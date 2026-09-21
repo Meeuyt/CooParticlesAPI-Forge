@@ -1,0 +1,83 @@
+package cn.coostack.cooparticlesapi.test.options.display
+
+import cn.coostack.cooparticlesapi.annotations.CooAutoRegister
+import cn.coostack.cooparticlesapi.annotations.CodecField
+import cn.coostack.cooparticlesapi.annotations.display.handle.DisplayEntityRegistryHelper
+import cn.coostack.cooparticlesapi.display.DisplayEntity
+import cn.coostack.cooparticlesapi.extend.minus
+import cn.coostack.cooparticlesapi.mixin.events.world.client.ItemRendererInvoker
+import cn.coostack.cooparticlesapi.utils.MinecraftRendererUtil
+import com.mojang.blaze3d.vertex.PoseStack
+import net.minecraft.client.Camera
+import net.minecraft.client.Minecraft
+import net.minecraft.client.renderer.LightTexture
+import net.minecraft.client.renderer.MultiBufferSource
+import net.minecraft.client.renderer.RenderType
+import net.minecraft.client.renderer.texture.OverlayTexture
+import net.minecraft.world.item.Items
+import net.minecraft.world.level.Level
+import net.minecraft.world.phys.Vec3
+import org.joml.Matrix4f
+
+@CooAutoRegister
+class TestShapeDisplayEntity(pos: Vec3, world: Level?) : DisplayEntity(pos, world) {
+    @CodecField
+    var direction = Vec3(0.0, 1.0, 0.0)
+
+    override fun render(
+        view: Matrix4f,
+        proj: Matrix4f,
+        modelMatrixStack: PoseStack,
+        buffer: MultiBufferSource,
+        delta: Float,
+        camera: Camera
+    ) {
+        modelMatrixStack.pushPose()
+        val renderer = Minecraft.getInstance().itemRenderer
+        val item = Items.WHITE_CONCRETE.defaultInstance
+        val seaLantern = renderer.getModel(item, world, null, 1)
+        val invoker = renderer as ItemRendererInvoker
+        val consumer = buffer.getBuffer(
+            CooParticlesRenderTypes.entityCutoutEmissive(InventoryMenu.BLOCK_ATLAS, 25f)
+        )
+        MinecraftRendererUtil.applyAtPoint(renderCenterOffset(), modelMatrixStack) {
+            scale(5f, 5f, 5f)
+        }
+        invoker.renderModel(
+            seaLantern,
+            item,
+            LightTexture.FULL_BRIGHT,
+            OverlayTexture.NO_OVERLAY,
+            modelMatrixStack,
+            consumer
+        )
+        modelMatrixStack.popPose()
+        MinecraftRendererUtil.applyAtPoint(renderCenterOffset(), modelMatrixStack) {
+            buffer.getBuffer(RenderType.LINES)
+                .addVertex(modelMatrixStack.last(), 0f, 0f, -2f)
+                .setNormal(modelMatrixStack.last(), 0f, 1f, 0f)
+                .setColor(255, 255, 255, 255)
+                .setLight(LightTexture.FULL_BRIGHT)
+                .addVertex(modelMatrixStack.last(), 0f, 0f, 2f)
+                .setNormal(modelMatrixStack.last(), 0f, 1f, 0f)
+                .setColor(255, 255, 128, 255)
+                .setLight(LightTexture.FULL_BRIGHT)
+        }
+    }
+
+    override fun tick() {
+        super.tick()
+        lookAt(direction)
+        if (world!!.isClientSide) {
+            return
+        }
+        val server = world as ServerLevel
+        val player = server.players().minByOrNull {
+            it.position().distanceTo(pos)
+        } ?: return
+
+        direction = player.eyePosition - pos
+    }
+
+    override fun getCodec() = DisplayEntityRegistryHelper.generateCodec(this)
+}
