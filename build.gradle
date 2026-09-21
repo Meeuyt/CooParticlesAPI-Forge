@@ -71,6 +71,10 @@ project(':forge') {
             'cn/coostack/cooparticlesapi/utils/ReflectUtil.kt'
         )
     }
+    sourceSets.main.java {
+        srcDir project(':common').sourceSets.main.java.srcDirs
+        exclude 'cn/coostack/cooparticlesapi/CodecHelperJava.java'
+    }
     compileKotlin {
         source(project(':common').sourceSets.main.allSource)
         inputs.file '../gradle.properties'
