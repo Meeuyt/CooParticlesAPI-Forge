@@ -56,48 +56,11 @@ tasks.named('jar', Jar) {
 
 sourceSets {
     main {
-    java {
-        exclude 'cn/coostack/cooparticlesapi/mixin/**'
-        exclude 'cn/coostack/cooparticlesapi/CodecHelperJava.java'
-        exclude 'cn/coostack/cooparticlesapi/renderer/terrain/CooTerrainRenderStateShard.java'
-    }
+        java {
+            exclude 'cn/coostack/cooparticlesapi/mixin/compat/sodium/**'
+        }
         kotlin {
             exclude 'cn/coostack/cooparticlesapi/renderer/terrain/sodium/**'
-            exclude 'cn/coostack/cooparticlesapi/CooParticlesAPI.kt'
-            exclude 'cn/coostack/cooparticlesapi/CooParticlesAPIClient.kt'
-            exclude 'cn/coostack/cooparticlesapi/CooShaderReloadSupport.kt'
-            exclude 'cn/coostack/cooparticlesapi/annotations/codec/CodecHelper.kt'
-            exclude 'cn/coostack/cooparticlesapi/utils/ServerCameraUtil.kt'
-            exclude 'cn/coostack/cooparticlesapi/utils/interpolator/data/InterpolatorVec3d.kt'
-            exclude 'cn/coostack/cooparticlesapi/utils/interpolator/data/InterpolatorVector3f.kt'
-            exclude 'cn/coostack/cooparticlesapi/utils/interpolator/data/InterpolatorDouble.kt'
-            exclude 'cn/coostack/cooparticlesapi/utils/interpolator/data/InterpolatorFloat.kt'
-            exclude 'cn/coostack/cooparticlesapi/utils/interpolator/data/InterpolatorQuaternionf.kt'
-            exclude 'cn/coostack/cooparticlesapi/utils/interpolator/data/InterpolatorRelativeLocation.kt'
-            exclude 'cn/coostack/cooparticlesapi/compat/IrisCompat.kt'
-            exclude 'cn/coostack/cooparticlesapi/blocks/**'
-            exclude 'cn/coostack/cooparticlesapi/entities/**'
-            exclude 'cn/coostack/cooparticlesapi/items/**'
-            exclude 'cn/coostack/cooparticlesapi/display/**'
-            exclude 'cn/coostack/cooparticlesapi/emitters/**'
-            exclude 'cn/coostack/cooparticlesapi/coofx/**'
-            exclude 'cn/coostack/cooparticlesapi/renderer/**'
-            exclude 'cn/coostack/cooparticlesapi/test/**'
-            exclude 'cn/coostack/cooparticlesapi/performance/**'
-            exclude 'cn/coostack/cooparticlesapi/supports/**'
-            exclude 'cn/coostack/cooparticlesapi/platform/**'
-            exclude 'cn/coostack/cooparticlesapi/data/**'
-            exclude 'cn/coostack/cooparticlesapi/listeners/**'
-            exclude 'cn/coostack/cooparticlesapi/key/**'
-            exclude 'cn/coostack/cooparticlesapi/accessor/**'
-            exclude 'cn/coostack/cooparticlesapi/annotations/composition/**'
-            exclude 'cn/coostack/cooparticlesapi/annotations/display/**'
-            exclude 'cn/coostack/cooparticlesapi/annotations/emitter/**'
-            exclude 'cn/coostack/cooparticlesapi/annotations/packet/**'
-            exclude 'cn/coostack/cooparticlesapi/annotations/renderer/**'
-            exclude 'cn/coostack/cooparticlesapi/barrages/**'
-            exclude 'cn/coostack/cooparticlesapi/commands/**'
-            exclude 'cn/coostack/cooparticlesapi/animation/**'
         }
     }
 }
