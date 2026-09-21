@@ -76,7 +76,7 @@ class TestCParticleComposition(position: Vec3, world: Level? = null) : AutoParti
     override fun getParticles(): Map<CompositionData, RelativeLocation> {
         return PointsBuilder()
             .addImage(
-                ImagePointBuilder(ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, "test/test2.png"))
+                ImagePointBuilder(ResourceLocation(CooParticlesConstants.MOD_ID, "test/test2.png"))
                     .scale(1.0)
                     .step(0.1)
             )

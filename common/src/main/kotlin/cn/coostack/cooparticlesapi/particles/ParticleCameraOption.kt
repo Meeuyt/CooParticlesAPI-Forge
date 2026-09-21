@@ -1,7 +1,7 @@
 package cn.coostack.cooparticlesapi.particles
 
 import com.mojang.serialization.Codec
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 
 enum class ParticleCameraOption(
     val enableAxis: Boolean,

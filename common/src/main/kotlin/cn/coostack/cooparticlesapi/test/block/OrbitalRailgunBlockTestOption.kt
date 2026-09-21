@@ -24,7 +24,7 @@ class OrbitalRailgunBlockTestOption(
     private val player: Player
 ) : TestOption<OrbitalRailgunBlockTestOption> {
     private val target = player.pick(96.0, 0F, false).location
-    private val terrainGroupId = ResourceLocation.fromNamespaceAndPath(
+    private val terrainGroupId = ResourceLocation(
         CooParticlesConstants.MOD_ID,
         "test/orbital_railgun/${player.uuid.toString().replace("-", "")}"
     )

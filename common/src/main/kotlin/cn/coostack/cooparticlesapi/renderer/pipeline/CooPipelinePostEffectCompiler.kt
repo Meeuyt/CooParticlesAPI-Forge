@@ -172,7 +172,7 @@ internal object CooPipelinePostEffectCompiler {
             CooPipelineTextureSource.BlockAtlas -> {
                 defaults.resource(
                     input.sampler,
-                    ResourceLocation.fromNamespaceAndPath("minecraft", "textures/atlas/blocks.png")
+                    ResourceLocation("minecraft", "textures/atlas/blocks.png")
                 )
                 input.input(PostEffectInputSource.CUSTOM_TEXTURE)
             }

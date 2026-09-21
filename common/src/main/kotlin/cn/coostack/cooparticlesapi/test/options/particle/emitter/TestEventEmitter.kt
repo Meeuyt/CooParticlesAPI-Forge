@@ -9,7 +9,7 @@ import cn.coostack.cooparticlesapi.network.particle.emitters.ParticleEmitters
 import cn.coostack.cooparticlesapi.particles.control.ParticleControler
 import cn.coostack.cooparticlesapi.utils.RelativeLocation
 import cn.coostack.cooparticlesapi.annotations.codec.ForgeStreamCodec
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.world.level.Level
 import net.minecraft.world.phys.Vec3
 
@@ -57,7 +57,7 @@ class TestEventEmitter(pos: Vec3, world: Level?) : ClassParticleEmitters(pos, wo
         return ID
     }
 
-    override fun getCodec(): ForgeStreamCodec<PacketByteBuf, ParticleEmitters> {
+    override fun getCodec(): ForgeStreamCodec<FriendlyByteBuf, ParticleEmitters> {
         return ParticleEmittersRegistryHelper.generateCodec(this)
     }
 }

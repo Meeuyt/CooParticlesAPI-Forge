@@ -13,7 +13,7 @@ class IdentifierTexture(val id: ResourceLocation) : GlTexture {
     var lastTextureID = 0
 
     private val textureResourceLocation: ResourceLocation =
-        ResourceLocation.fromNamespaceAndPath(id.namespace, "textures/${id.path}")
+        ResourceLocation(id.namespace, "textures/${id.path}")
     /**
      * 执行 `IdentifierTexture` 定义的 `textureID` 操作；输入和返回值用于该组件当前的渲染职责。
      *

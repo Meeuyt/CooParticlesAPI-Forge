@@ -40,7 +40,7 @@ class PacketUpdateTestControllerC2S() : CooPacket() {
     @CodecField var selectedIndex: Int = 0
 
     override fun id(): ResourceLocation {
-        return ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, "update_test_controller_c2s")
+        return ResourceLocation(CooParticlesConstants.MOD_ID, "update_test_controller_c2s")
     }
 
     override fun onServerReceive(context: ServerContext) {

@@ -17,7 +17,7 @@ import net.minecraft.world.phys.Vec3
 class TestFourierPhotoComposition(position: Vec3, world: Level? = null) : AutoParticleComposition(position, world) {
     companion object {
         val image = ImageUtil.loadFromIdentifier(
-            ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, "test/testing.png")
+            ResourceLocation(CooParticlesConstants.MOD_ID, "test/testing.png")
         )
         val builders = HashMap<RelativeLocation, FourierSeriesBuilder>()
         val points = PointsBuilder()

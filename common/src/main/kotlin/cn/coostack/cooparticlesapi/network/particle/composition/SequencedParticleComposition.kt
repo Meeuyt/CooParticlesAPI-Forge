@@ -1,6 +1,6 @@
 package cn.coostack.cooparticlesapi.network.particle.composition
 
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.world.phys.Vec3
 
 class SequencedParticleComposition(position: Vec3, world: Level? = null) : ParticleComposition(position, world) {

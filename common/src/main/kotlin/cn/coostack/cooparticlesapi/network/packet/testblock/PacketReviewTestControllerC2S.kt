@@ -23,7 +23,7 @@ class PacketReviewTestControllerC2S() : CooPacket() {
     }
 
     override fun id(): ResourceLocation {
-        return ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, "review_test_controller_c2s")
+        return ResourceLocation(CooParticlesConstants.MOD_ID, "review_test_controller_c2s")
     }
 
     override fun onServerReceive(context: ServerContext) {

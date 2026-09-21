@@ -316,7 +316,7 @@ object CooModParticles {
     ): CommonDeferredRegistry<ParticleType<T>> {
         val registry = CommonDeferredRegistry(
             BuiltInRegistries.PARTICLE_TYPE,
-            ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, id)
+            ResourceLocation(CooParticlesConstants.MOD_ID, id)
         ) {
             object : ParticleType<T>(alwaysShow) {
                 override fun codec(): MapCodec<T> {

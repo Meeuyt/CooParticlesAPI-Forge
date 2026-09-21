@@ -130,7 +130,7 @@ object CooRenderTypeResourceRegistry {
     private fun resourceLocation(text: String): ResourceLocation {
         val split = text.split(':', limit = 2)
         require(split.size == 2) { "Invalid resource location: $text" }
-        return ResourceLocation.fromNamespaceAndPath(split[0], split[1])
+        return ResourceLocation(split[0], split[1])
     }
 
     private fun vertexFormat(name: String): VertexFormat {

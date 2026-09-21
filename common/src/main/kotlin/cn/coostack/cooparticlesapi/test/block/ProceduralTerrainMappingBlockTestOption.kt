@@ -18,7 +18,7 @@ class ProceduralTerrainMappingBlockTestOption(
 ) : TestOption<ProceduralTerrainMappingBlockTestOption> {
     /** Mapping 测试以启动玩家脚下为球心，避免准星命中远处方块造成位置误解。 */
     private val center = player.position() + Vec3(0.0, 0.5, 0.0)
-    private val instanceId = ResourceLocation.fromNamespaceAndPath(
+    private val instanceId = ResourceLocation(
         CooParticlesConstants.MOD_ID,
         "test/procedural_terrain_mapping/${player.uuid.toString().replace("-", "")}"
     )

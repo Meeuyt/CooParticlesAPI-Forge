@@ -13,13 +13,13 @@ abstract class SimpleControlableParticleEffect(
     faceToPlayer: Boolean = true,
     private val particleTypeGetter: () -> ParticleType<*>,
     private val effectFactory: (UUID, Boolean) -> ControlableParticleEffect,
-    private val packetCodecGetter: () -> ForgeStreamCodec<PacketByteBuf, out ControlableParticleEffect>
+    private val packetCodecGetter: () -> ForgeStreamCodec<FriendlyByteBuf, out ControlableParticleEffect>
 ) : ControlableParticleEffect(controlUUID, faceToPlayer) {
     override fun getType(): ParticleType<*> {
         return particleTypeGetter()
     }
 
-    override fun getPacketCodec(): ForgeStreamCodec<PacketByteBuf, out ControlableParticleEffect> {
+    override fun getPacketCodec(): ForgeStreamCodec<FriendlyByteBuf, out ControlableParticleEffect> {
         return packetCodecGetter()
     }
 
@@ -48,7 +48,7 @@ internal object SimpleControlableParticleEffectCodecs {
         }
     }
 
-    fun <T : ControlableParticleEffect> packetCodec(factory: (UUID, Boolean) -> T): ForgeStreamCodec<PacketByteBuf, T> {
+    fun <T : ControlableParticleEffect> packetCodec(factory: (UUID, Boolean) -> T): ForgeStreamCodec<FriendlyByteBuf, T> {
         return ForgeStreamCodec.of(
             { buf, effect ->
                 buf.writeUUID(effect.controlUUID)
@@ -63,5 +63,5 @@ open class SimpleControlableParticleEffectCodecProvider<T : ControlableParticleE
     factory: (UUID, Boolean) -> T
 ) {
     val codec: MapCodec<T> = SimpleControlableParticleEffectCodecs.mapCodec(factory)
-    val packetCode: ForgeStreamCodec<PacketByteBuf, T> = SimpleControlableParticleEffectCodecs.packetCodec(factory)
+    val packetCode: ForgeStreamCodec<FriendlyByteBuf, T> = SimpleControlableParticleEffectCodecs.packetCodec(factory)
 }

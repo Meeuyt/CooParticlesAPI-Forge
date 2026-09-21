@@ -45,7 +45,7 @@ class PacketBindStarfieldFboBlockS2C() : CooPacket() {
 
     /** @return 星空 FBO 方块类型绑定包的稳定资源 ID。 */
     override fun id(): ResourceLocation {
-        return ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, PACKET_ID)
+        return ResourceLocation(CooParticlesConstants.MOD_ID, PACKET_ID)
     }
 
     /**

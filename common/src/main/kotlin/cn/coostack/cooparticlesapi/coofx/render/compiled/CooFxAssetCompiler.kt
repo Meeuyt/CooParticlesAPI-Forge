@@ -243,7 +243,7 @@ class CooFxAssetCompiler {
             val material = materials[primitive.materialIndex]
             val key = CooFxMeshBatchKey(
                 generation = 1L,
-                pipelineId = ResourceLocation.fromNamespaceAndPath(source.resource.namespace, "coofx/world"),
+                pipelineId = ResourceLocation(source.resource.namespace, "coofx/world"),
                 worldNodeId = "world",
                 primitiveId = primitive.id,
                 vertexLayoutVersion = primitive.vertexLayout.version,

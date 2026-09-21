@@ -4,7 +4,7 @@ import cn.coostack.cooparticlesapi.CooParticlesConstants
 import cn.coostack.cooparticlesapi.event.events.key.KeyActionBatch
 import cn.coostack.cooparticlesapi.event.events.key.KeyActionData
 import cn.coostack.cooparticlesapi.event.events.key.KeyActionType
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.resources.ResourceLocation
 
 class PacketKeyActionC2S(
@@ -12,8 +12,8 @@ class PacketKeyActionC2S(
 ) {
     companion object {
         private val identifierID =
-            ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, "key_action")
-        val payloadID = ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, "key_action")
+            ResourceLocation(CooParticlesConstants.MOD_ID, "key_action")
+        val payloadID = ResourceLocation(CooParticlesConstants.MOD_ID, "key_action")
         val CODEC = ForgeStreamCodec.of({ packet, buf ->
             val entries = packet.keyActions.entries
             buf.writeVarInt(entries.size)

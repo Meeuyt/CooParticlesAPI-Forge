@@ -3,7 +3,7 @@ package cn.coostack.cooparticlesapi.network.particle.emitters
 import cn.coostack.cooparticlesapi.cparticle.CParticleColorCurve
 import cn.coostack.cooparticlesapi.cparticle.CParticleCurve
 import cn.coostack.cooparticlesapi.utils.GraphMathHelper
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 import org.joml.Vector3f
 import kotlin.math.roundToInt
 import kotlin.random.Random
@@ -11,7 +11,7 @@ import kotlin.random.Random
 class SimpleRandomParticleData {
 
     companion object {
-        val PACKET_CODEC: ForgeStreamCodec<PacketByteBuf, SimpleRandomParticleData> = ForgeStreamCodec.of({ buf, it ->
+        val PACKET_CODEC: ForgeStreamCodec<FriendlyByteBuf, SimpleRandomParticleData> = ForgeStreamCodec.of({ buf, it ->
             buf.apply {
                 writeInt(it.maxAge)
                 writeInt(it.minAge)

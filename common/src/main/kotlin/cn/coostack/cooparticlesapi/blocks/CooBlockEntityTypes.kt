@@ -17,7 +17,7 @@ object CooBlockEntityTypes {
     }
 
     private fun register(id: String, supplier: () -> BlockEntityType<*>): CommonDeferredRegistry<BlockEntityType<*>> {
-        val location = ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, id)
+        val location = ResourceLocation(CooParticlesConstants.MOD_ID, id)
         return CooParticlesServices.COO_REGISTRY.register(
             CommonDeferredRegistry(BuiltInRegistries.BLOCK_ENTITY_TYPE, location) { supplier() }
         )

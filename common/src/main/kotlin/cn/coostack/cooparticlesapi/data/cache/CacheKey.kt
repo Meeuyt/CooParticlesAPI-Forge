@@ -7,7 +7,7 @@ class CacheKey<T>(val targetType: Class<T>, val id: ResourceLocation) {
     companion object {
         inline fun <reified T> ofCooParticle(id: String): CacheKey<T> {
             return CacheKey(
-                T::class.java, ResourceLocation.fromNamespaceAndPath(
+                T::class.java, ResourceLocation(
                     CooParticlesConstants.MOD_ID, id
                 )
             )

@@ -9,6 +9,6 @@ import net.minecraft.core.particles.ParticleOptions
 import java.util.UUID
 
 abstract class ControlableParticleEffect(var controlUUID: UUID, val faceToPlayer: Boolean = true) : ParticleOptions {
-    abstract fun getPacketCodec(): ForgeStreamCodec<PacketByteBuf, out ControlableParticleEffect>
+    abstract fun getPacketCodec(): ForgeStreamCodec<FriendlyByteBuf, out ControlableParticleEffect>
     abstract fun clone(): ControlableParticleEffect
 }

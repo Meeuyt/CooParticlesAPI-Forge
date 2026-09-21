@@ -6,7 +6,7 @@ import cn.coostack.cooparticlesapi.renderer.post.PostEffectLifecycle
 import cn.coostack.cooparticlesapi.renderer.post.PostEffectParams
 import cn.coostack.cooparticlesapi.renderer.post.SyncedPostEffectState
 import cn.coostack.cooparticlesapi.renderer.pipeline.CooUniformValue
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.resources.ResourceLocation
 
 class PacketRendererPostEffectS2C private constructor(
@@ -28,8 +28,8 @@ class PacketRendererPostEffectS2C private constructor(
 
     companion object {
         private val identifierID =
-            ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, "renderer_post_effect_packet")
-        val payloadID = ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, "renderer_post_effect_packet")
+            ResourceLocation(CooParticlesConstants.MOD_ID, "renderer_post_effect_packet")
+        val payloadID = ResourceLocation(CooParticlesConstants.MOD_ID, "renderer_post_effect_packet")
 
         val CODEC = ForgeStreamCodec.of({ packet, buf ->
             buf.writeInt(packet.operation.id)
@@ -55,7 +55,7 @@ class PacketRendererPostEffectS2C private constructor(
             return PacketRendererPostEffectS2C(Operation.REMOVE, null, instanceId)
         }
 
-        private fun SyncedPostEffectState.write(buf: PacketByteBuf) {
+        private fun SyncedPostEffectState.write(buf: FriendlyByteBuf) {
             buf.writeResourceLocation(effectType)
             buf.writeUtf(instanceId)
             PostEffectBinding.writeTyped(buf, binding)
@@ -67,7 +67,7 @@ class PacketRendererPostEffectS2C private constructor(
             buf.writeInt(priority)
         }
 
-        private fun readState(buf: PacketByteBuf): SyncedPostEffectState {
+        private fun readState(buf: FriendlyByteBuf): SyncedPostEffectState {
             return SyncedPostEffectState(
                 effectType = buf.readResourceLocation(),
                 instanceId = buf.readUtf(),

@@ -1,7 +1,7 @@
 package cn.coostack.cooparticlesapi.network.packet.server
 
 import cn.coostack.cooparticlesapi.CooParticlesConstants
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.resources.ResourceLocation
 import java.util.UUID
 
@@ -11,8 +11,8 @@ class PacketParticleStyleS2C(
     val args: Map<String, cn.coostack.cooparticlesapi.network.buffer.ParticleControlerDataBuffer<*>>
 ) {
     companion object {
-        private val identifierID = ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, "particle_style")
-        val payloadID = ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, "particle_style")
+        private val identifierID = ResourceLocation(CooParticlesConstants.MOD_ID, "particle_style")
+        val payloadID = ResourceLocation(CooParticlesConstants.MOD_ID, "particle_style")
         val CODEC = ForgeStreamCodec.of({ packet, buf ->
             buf.writeUUID(packet.uuid)
             buf.writeInt(packet.type.id)

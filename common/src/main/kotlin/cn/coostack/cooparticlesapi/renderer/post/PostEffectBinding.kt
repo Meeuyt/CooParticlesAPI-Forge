@@ -1,7 +1,7 @@
 package cn.coostack.cooparticlesapi.renderer.post
 
 import net.minecraft.core.BlockPos
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.resources.ResourceLocation
 import java.util.UUID
 
@@ -24,7 +24,7 @@ internal sealed interface PostEffectBinding {
      *
      * @param buf 目标网络缓冲区
      */
-    fun write(buf: PacketByteBuf)
+    fun write(buf: FriendlyByteBuf)
 
     /** 绑定整屏效果，`center` 默认为屏幕中心。 */
     data object Screen : PostEffectBinding {
@@ -35,7 +35,7 @@ internal sealed interface PostEffectBinding {
          *
          * @param buf 承载本次读写数据的缓冲区，调用前必须位于约定字段起点
          */
-        override fun write(buf: PacketByteBuf) = Unit
+        override fun write(buf: FriendlyByteBuf) = Unit
     }
 
     /**
@@ -53,7 +53,7 @@ internal sealed interface PostEffectBinding {
          *
          * @param buf 承载本次读写数据的缓冲区，调用前必须位于约定字段起点
          */
-        override fun write(buf: PacketByteBuf) {
+        override fun write(buf: FriendlyByteBuf) {
             buf.writeFloat(x)
             buf.writeFloat(y)
         }
@@ -75,7 +75,7 @@ internal sealed interface PostEffectBinding {
          *
          * @param buf 承载本次读写数据的缓冲区，调用前必须位于约定字段起点
          */
-        override fun write(buf: PacketByteBuf) {
+        override fun write(buf: FriendlyByteBuf) {
             buf.writeBoolean(level != null)
             level?.let(buf::writeResourceLocation)
             buf.writeDouble(x)
@@ -98,7 +98,7 @@ internal sealed interface PostEffectBinding {
          *
          * @param buf 承载本次读写数据的缓冲区，调用前必须位于约定字段起点
          */
-        override fun write(buf: PacketByteBuf) {
+        override fun write(buf: FriendlyByteBuf) {
             buf.writeInt(entityId)
         }
     }
@@ -116,7 +116,7 @@ internal sealed interface PostEffectBinding {
          *
          * @param buf 承载本次读写数据的缓冲区，调用前必须位于约定字段起点
          */
-        override fun write(buf: PacketByteBuf) {
+        override fun write(buf: FriendlyByteBuf) {
             buf.writeUUID(playerId)
         }
     }
@@ -140,7 +140,7 @@ internal sealed interface PostEffectBinding {
          *
          * @param buf 承载本次读写数据的缓冲区，调用前必须位于约定字段起点
          */
-        override fun write(buf: PacketByteBuf) {
+        override fun write(buf: FriendlyByteBuf) {
             buf.writeBoolean(level != null)
             level?.let(buf::writeResourceLocation)
             buf.writeBlockPos(pos)
@@ -163,7 +163,7 @@ internal sealed interface PostEffectBinding {
          *
          * @param buf 承载本次读写数据的缓冲区，调用前必须位于约定字段起点
          */
-        override fun write(buf: PacketByteBuf) {
+        override fun write(buf: FriendlyByteBuf) {
             buf.writeBoolean(itemId != null)
             itemId?.let(buf::writeResourceLocation)
             buf.writeUtf(context.name)
@@ -187,7 +187,7 @@ internal sealed interface PostEffectBinding {
          *
          * @param buf 承载本次读写数据的缓冲区，调用前必须位于约定字段起点
          */
-        override fun write(buf: PacketByteBuf) {
+        override fun write(buf: FriendlyByteBuf) {
             buf.writeResourceLocation(key)
             buf.writeByteArray(payload)
         }
@@ -224,7 +224,7 @@ internal sealed interface PostEffectBinding {
          * @param buf 目标网络缓冲区
          * @param binding 要序列化的绑定实例
          */
-        fun writeTyped(buf: PacketByteBuf, binding: PostEffectBinding) {
+        fun writeTyped(buf: FriendlyByteBuf, binding: PostEffectBinding) {
             buf.writeUtf(binding.typeId)
             binding.write(buf)
         }
@@ -236,7 +236,7 @@ internal sealed interface PostEffectBinding {
          * @return 解码后的绑定实例
          * @throws IllegalStateException 类型 id 未注册时抛出
          */
-        fun readTyped(buf: PacketByteBuf): PostEffectBinding {
+        fun readTyped(buf: FriendlyByteBuf): PostEffectBinding {
             return when (val type = buf.readUtf()) {
                 "screen" -> Screen
                 "screen_point" -> ScreenPoint(buf.readFloat(), buf.readFloat())
@@ -260,7 +260,7 @@ internal sealed interface PostEffectBinding {
             }
         }
 
-        private fun readNullableId(buf: PacketByteBuf): ResourceLocation? {
+        private fun readNullableId(buf: FriendlyByteBuf): ResourceLocation? {
             return if (buf.readBoolean()) buf.readResourceLocation() else null
         }
     }

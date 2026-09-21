@@ -263,14 +263,14 @@ object PostEffectDemoOptions {
     }
 
     private fun id(path: String): ResourceLocation {
-        return ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, path)
+        return ResourceLocation(CooParticlesConstants.MOD_ID, path)
     }
 
     private fun vertexShader(path: String): ResourceLocation {
-        return ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, "post/$path.vsh")
+        return ResourceLocation(CooParticlesConstants.MOD_ID, "post/$path.vsh")
     }
 
     private fun shader(path: String): ResourceLocation {
-        return ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, "post/$path.fsh")
+        return ResourceLocation(CooParticlesConstants.MOD_ID, "post/$path.fsh")
     }
 }

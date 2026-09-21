@@ -16,6 +16,6 @@ internal object BuiltinRenderEffectTypes {
      * 生成当前 mod 命名空间下的内建 effect id。
      */
     private fun id(path: String): ResourceLocation {
-        return ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, path)
+        return ResourceLocation(CooParticlesConstants.MOD_ID, path)
     }
 }

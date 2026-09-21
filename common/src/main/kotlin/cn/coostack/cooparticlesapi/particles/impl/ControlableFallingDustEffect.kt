@@ -11,7 +11,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder
 import io.netty.buffer.Unpooled
 import net.minecraft.core.particles.ParticleType
 import net.minecraft.core.registries.BuiltInRegistries
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.state.BlockState
 import java.util.*

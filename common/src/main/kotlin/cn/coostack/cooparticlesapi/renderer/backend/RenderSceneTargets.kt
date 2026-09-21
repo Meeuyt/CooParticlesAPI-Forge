@@ -53,6 +53,6 @@ object RenderSceneTargets {
      * 生成当前 mod 命名空间下的 target id。
      */
     private fun id(path: String): ResourceLocation {
-        return ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, path)
+        return ResourceLocation(CooParticlesConstants.MOD_ID, path)
     }
 }

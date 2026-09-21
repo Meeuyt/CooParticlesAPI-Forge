@@ -1,6 +1,6 @@
 package cn.coostack.cooparticlesapi.network.packet.api
 
-interface PacketByteBuf {
+interface FriendlyByteBuf {
     fun writeUtf(value: String)
     fun writeResourceLocation(value: Any?)
     fun writeInt(value: Int)

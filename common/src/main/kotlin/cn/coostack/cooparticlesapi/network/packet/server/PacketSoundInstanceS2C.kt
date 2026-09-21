@@ -1,7 +1,7 @@
 package cn.coostack.cooparticlesapi.network.packet.server
 
 import cn.coostack.cooparticlesapi.CooParticlesConstants
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.sounds.SoundSource
 import net.minecraft.world.phys.Vec3
@@ -34,8 +34,8 @@ class PacketSoundInstanceS2C(
     }
 
     companion object {
-        private val identifierID = ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, "sound_instance")
-        val payloadID = ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, "sound_instance")
+        private val identifierID = ResourceLocation(CooParticlesConstants.MOD_ID, "sound_instance")
+        val payloadID = ResourceLocation(CooParticlesConstants.MOD_ID, "sound_instance")
 
         private val emptySound = ResourceLocation.withDefaultNamespace("empty")
 
@@ -195,12 +195,12 @@ class PacketSoundInstanceS2C(
             )
         }
 
-        private fun writeResourceLocationSet(buf: PacketByteBuf, values: Set<ResourceLocation>) {
+        private fun writeResourceLocationSet(buf: FriendlyByteBuf, values: Set<ResourceLocation>) {
             buf.writeVarInt(values.size)
             values.forEach(buf::writeResourceLocation)
         }
 
-        private fun readResourceLocationSet(buf: PacketByteBuf): Set<ResourceLocation> {
+        private fun readResourceLocationSet(buf: FriendlyByteBuf): Set<ResourceLocation> {
             val result = LinkedHashSet<ResourceLocation>()
             repeat(buf.readVarInt()) {
                 result.add(buf.readResourceLocation())
@@ -208,12 +208,12 @@ class PacketSoundInstanceS2C(
             return result
         }
 
-        private fun writeSoundSourceSet(buf: PacketByteBuf, values: Set<SoundSource>) {
+        private fun writeSoundSourceSet(buf: FriendlyByteBuf, values: Set<SoundSource>) {
             buf.writeVarInt(values.size)
             values.forEach(buf::writeEnum)
         }
 
-        private fun readSoundSourceSet(buf: PacketByteBuf): Set<SoundSource> {
+        private fun readSoundSourceSet(buf: FriendlyByteBuf): Set<SoundSource> {
             val result = LinkedHashSet<SoundSource>()
             repeat(buf.readVarInt()) {
                 result.add(buf.readEnum(SoundSource::class.java))
@@ -221,12 +221,12 @@ class PacketSoundInstanceS2C(
             return result
         }
 
-        private fun writeStringSet(buf: PacketByteBuf, values: Set<String>) {
+        private fun writeStringSet(buf: FriendlyByteBuf, values: Set<String>) {
             buf.writeVarInt(values.size)
             values.forEach(buf::writeUtf)
         }
 
-        private fun readStringSet(buf: PacketByteBuf): Set<String> {
+        private fun readStringSet(buf: FriendlyByteBuf): Set<String> {
             val result = LinkedHashSet<String>()
             repeat(buf.readVarInt()) {
                 result.add(buf.readUtf())

@@ -114,7 +114,7 @@ class DemoWaterBallRenderEntityRenderer : RenderEntityRenderer<DemoWaterBallRend
 
     companion object {
         private fun id(path: String): ResourceLocation {
-            return ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, path)
+            return ResourceLocation(CooParticlesConstants.MOD_ID, path)
         }
     }
 }

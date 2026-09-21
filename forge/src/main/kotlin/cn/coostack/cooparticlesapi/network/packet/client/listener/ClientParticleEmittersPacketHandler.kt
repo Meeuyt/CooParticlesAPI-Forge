@@ -6,7 +6,7 @@ import cn.coostack.cooparticlesapi.network.particle.emitters.ParticleEmitters
 import cn.coostack.cooparticlesapi.network.particle.emitters.ParticleEmittersManager
 import cn.coostack.cooparticlesapi.platform.network.ClientContext
 import io.netty.buffer.Unpooled
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 import java.util.concurrent.ConcurrentHashMap
 
 object ClientParticleEmittersPacketHandler {
@@ -51,7 +51,7 @@ object ClientParticleEmittersPacketHandler {
             }
             return null
         }
-        val buffer = PacketByteBuf(Unpooled.wrappedBuffer(payload.emitterData))
+        val buffer = FriendlyByteBuf(Unpooled.wrappedBuffer(payload.emitterData))
         return try {
             codec.decode(buffer).also { emitters ->
                 if (emitters.uuid != payload.emitterUUID && identityMismatchWarnings.add(payload.emitterID)) {

@@ -319,7 +319,7 @@ open class CParticle {
     }
 
     fun sprite(namespace: String, path: String): CParticle {
-        sprite = ResourceLocation.fromNamespaceAndPath(namespace, path)
+        sprite = ResourceLocation(namespace, path)
         return this
     }
 

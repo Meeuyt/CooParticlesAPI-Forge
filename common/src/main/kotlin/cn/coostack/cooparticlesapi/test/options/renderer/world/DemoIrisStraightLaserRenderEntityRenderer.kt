@@ -162,7 +162,7 @@ class DemoIrisStraightLaserRenderEntityRenderer : RenderEntityRenderer<DemoIrisS
         ensureBeamGeometry(beamLength)
         beamShader.useOnContext {
             val brightnessScale = entity.brightness.coerceAtLeast(0F)
-            val impactNoiseTexture = ResourceLocation.fromNamespaceAndPath(
+            val impactNoiseTexture = ResourceLocation(
                 CooParticlesConstants.MOD_ID,
                 "textures/effect/straight_laser_impact_noise.png"
             )

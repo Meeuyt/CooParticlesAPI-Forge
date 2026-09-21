@@ -15,7 +15,7 @@ open class ControlableCParticleData : ControlableParticleData() {
     var rotation: Vector3f = Vector3f(0f, 0f, 0f)
 
     companion object {
-        val CODEC: ForgeStreamCodec<PacketByteBuf, ControlableCParticleData> = ForgeStreamCodec.of(
+        val CODEC: ForgeStreamCodec<FriendlyByteBuf, ControlableCParticleData> = ForgeStreamCodec.of(
             { buf, data ->
                 ControlableParticleData.PACKET_CODEC.encode(buf, data)
                 buf.writeBoolean(data.textureSource != null)
@@ -41,7 +41,7 @@ open class ControlableCParticleData : ControlableParticleData() {
         )
     }
 
-    override fun getCodec(): ForgeStreamCodec<PacketByteBuf, out SerializableData> {
+    override fun getCodec(): ForgeStreamCodec<FriendlyByteBuf, out SerializableData> {
         return CODEC
     }
 

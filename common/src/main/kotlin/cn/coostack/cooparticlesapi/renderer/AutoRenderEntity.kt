@@ -2,12 +2,12 @@ package cn.coostack.cooparticlesapi.renderer
 
 import cn.coostack.cooparticlesapi.annotations.codec.CodecHelper
 import cn.coostack.cooparticlesapi.annotations.renderer.handle.RenderEntityRegistryHelper
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.world.level.Level
 import net.minecraft.world.phys.Vec3
 
 abstract class AutoRenderEntity(world: Level?, pos: Vec3 = Vec3.ZERO) : RenderEntity(world, pos) {
-    override fun getCodec(): ForgeStreamCodec<PacketByteBuf, RenderEntity> {
+    override fun getCodec(): ForgeStreamCodec<FriendlyByteBuf, RenderEntity> {
         return RenderEntityRegistryHelper.generateCodec(this)
     }
 

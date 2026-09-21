@@ -14,9 +14,9 @@ object TestControlKeyBindings {
     private const val LONG_PRESS_THRESHOLD = 10
 
     val NEXT_KEY: ResourceLocation =
-        ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, "test_next")
+        ResourceLocation(CooParticlesConstants.MOD_ID, "test_next")
     val PREVIOUS_KEY: ResourceLocation =
-        ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, "test_previous")
+        ResourceLocation(CooParticlesConstants.MOD_ID, "test_previous")
 
     private var registered = false
 

@@ -1,6 +1,6 @@
 package cn.coostack.cooparticlesapi.renderer.post
 
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 import kotlin.math.max
 import kotlin.math.min
 
@@ -69,7 +69,7 @@ internal data class PostEffectLifecycle(
      *
      * @param buf 目标网络缓冲区
      */
-    fun write(buf: PacketByteBuf) {
+    fun write(buf: FriendlyByteBuf) {
         buf.writeInt(durationTicks)
         buf.writeInt(ageTicks)
         buf.writeInt(warmupTicks)
@@ -85,7 +85,7 @@ internal data class PostEffectLifecycle(
          * @param buf 已定位到 durationTicks 字段的网络缓冲区
          * @return 解码后的生命周期快照
          */
-        fun read(buf: PacketByteBuf): PostEffectLifecycle {
+        fun read(buf: FriendlyByteBuf): PostEffectLifecycle {
             return PostEffectLifecycle(
                 durationTicks = buf.readInt(),
                 ageTicks = buf.readInt(),

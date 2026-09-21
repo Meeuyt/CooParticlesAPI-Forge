@@ -1,6 +1,6 @@
 package cn.coostack.cooparticlesapi.network.particle.emitters.environment.wind
 
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 
 object BallWindDirection : WindDirection {
     override fun nextTick(): Double {

@@ -15,13 +15,13 @@ enum class CooTerrainMappingRegionType(
     val shaderValue: Int
 ) {
     /** 三维球形区域，参数为中心和半径。 */
-    SPHERE(ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, "sphere"), 0),
+    SPHERE(ResourceLocation(CooParticlesConstants.MOD_ID, "sphere"), 0),
 
     /** 轴对齐长方体区域，参数为中心和三个半轴长度；正方体是三个半轴相等的 BOX。 */
-    BOX(ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, "box"), 1),
+    BOX(ResourceLocation(CooParticlesConstants.MOD_ID, "box"), 1),
 
     /** 沿 Y 轴的圆柱体区域，参数为中心、半径和完整高度。 */
-    CYLINDER(ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, "cylinder"), 2);
+    CYLINDER(ResourceLocation(CooParticlesConstants.MOD_ID, "cylinder"), 2);
 
     companion object {
         /** 将不受信任的 wire 标签解析为已注册区域类型。 */

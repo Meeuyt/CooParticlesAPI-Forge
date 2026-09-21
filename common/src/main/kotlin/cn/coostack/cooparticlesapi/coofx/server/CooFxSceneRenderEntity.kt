@@ -280,7 +280,7 @@ class CooFxSceneRenderEntity() : AutoRenderEntity(null, Vec3.ZERO) {
 
     companion object {
         /** RenderEntity registry 使用的稳定类型 ID。 */
-        val ID: ResourceLocation = ResourceLocation.fromNamespaceAndPath(
+        val ID: ResourceLocation = ResourceLocation(
             CooParticlesConstants.MOD_ID,
             "coofx_scene",
         )

@@ -6,7 +6,7 @@ import cn.coostack.cooparticlesapi.network.particle.composition.ParticleComposit
 import cn.coostack.cooparticlesapi.network.particle.composition.manager.ParticleCompositionManager
 import cn.coostack.cooparticlesapi.platform.network.ClientContext
 import io.netty.buffer.Unpooled
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 import java.util.concurrent.ConcurrentHashMap
 
 object ClientParticleCompositionHandler {
@@ -69,7 +69,7 @@ object ClientParticleCompositionHandler {
             }
             return null
         }
-        val buffer = PacketByteBuf(Unpooled.wrappedBuffer(data))
+        val buffer = FriendlyByteBuf(Unpooled.wrappedBuffer(data))
         return try {
             codec.decode(buffer)
         } finally {

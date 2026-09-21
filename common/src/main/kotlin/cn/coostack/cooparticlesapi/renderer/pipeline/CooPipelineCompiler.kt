@@ -310,7 +310,7 @@ internal object CooPipelineCompiler {
                 '_'
             }
         }.joinToString("")
-        return ResourceLocation.fromNamespaceAndPath(
+        return ResourceLocation(
             pipeline.id.namespace,
             "pipeline/${pipeline.id.path}/$safeNode"
         )

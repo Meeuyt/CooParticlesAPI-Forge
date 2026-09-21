@@ -5,7 +5,7 @@ import cn.coostack.cooparticlesapi.display.DisplayEntityManager
 import cn.coostack.cooparticlesapi.network.packet.server.PacketDisplayEntityS2C
 import cn.coostack.cooparticlesapi.platform.network.ClientContext
 import io.netty.buffer.Unpooled
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 
 object ClientDisplayEntityPacketHandler {
     fun receive(
@@ -36,7 +36,7 @@ object ClientDisplayEntityPacketHandler {
         val type = payload.type
         val codec = DisplayEntityManager.registeredTypes[type]!!
         val new = codec.decode(
-            PacketByteBuf(Unpooled.wrappedBuffer(data))
+            FriendlyByteBuf(Unpooled.wrappedBuffer(data))
         )
         return new
     }

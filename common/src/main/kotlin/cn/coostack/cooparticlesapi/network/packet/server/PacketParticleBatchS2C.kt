@@ -3,7 +3,7 @@ package cn.coostack.cooparticlesapi.network.packet.server
 import cn.coostack.cooparticlesapi.CooParticlesConstants
 import net.minecraft.core.particles.ParticleOptions
 import net.minecraft.core.particles.ParticleTypes
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.phys.Vec3
 
@@ -19,8 +19,8 @@ class PacketParticleBatchS2C(
     companion object {
         const val MAX_PARTICLES = 4096
 
-        private val identifierID = ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, "particle_batch")
-        val payloadID = ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, "particle_batch")
+        private val identifierID = ResourceLocation(CooParticlesConstants.MOD_ID, "particle_batch")
+        val payloadID = ResourceLocation(CooParticlesConstants.MOD_ID, "particle_batch")
         val CODEC = ForgeStreamCodec.of({ packet, buf ->
             ParticleTypes.STREAM_CODEC.encode(buf, packet.type)
             buf.writeVec3(packet.velocity)

@@ -11,7 +11,7 @@ import cn.coostack.cooparticlesapi.renderer.runtime.RenderEntityInstance
 import cn.coostack.cooparticlesapi.renderer.runtime.RenderEntityRenderer
 import cn.coostack.cooparticlesapi.renderer.RenderEntity
 import io.netty.buffer.Unpooled
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.resources.ResourceLocation
 
 /** 把服务端 RenderEntity 同步包应用到客户端实体运行时。 */
@@ -29,7 +29,7 @@ object ClientRenderEntityPacketHandler {
         val method = packet.method
         val data = packet.entityData
         val id = packet.id
-        val buf = PacketByteBuf(Unpooled.wrappedBuffer(data))
+        val buf = FriendlyByteBuf(Unpooled.wrappedBuffer(data))
         val type = ClientRenderEntityRegistry.get(id)
         if (type == null) {
             CooParticlesConstants.logger.error(

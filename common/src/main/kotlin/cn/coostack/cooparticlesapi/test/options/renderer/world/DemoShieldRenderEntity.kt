@@ -40,7 +40,7 @@ class DemoShieldRenderEntity() : AutoRenderEntity(null, Vec3.ZERO), DemoWorldRen
     override fun getRenderID(): ResourceLocation = ID
 
     companion object {
-        val ID: ResourceLocation = ResourceLocation.fromNamespaceAndPath(
+        val ID: ResourceLocation = ResourceLocation(
             CooParticlesConstants.MOD_ID,
             "demo_shield_render_entity"
         )

@@ -27,7 +27,7 @@ object CooModEntityTypes {
         id: String,
         supplier: (ResourceLocation) -> EntityType<T>
     ): CommonDeferredEntityType<T> {
-        val entityId = ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, id)
+        val entityId = ResourceLocation(CooParticlesConstants.MOD_ID, id)
         val type =
             CommonDeferredEntityType(entityId, Supplier { supplier(entityId) })
         types.add(type)

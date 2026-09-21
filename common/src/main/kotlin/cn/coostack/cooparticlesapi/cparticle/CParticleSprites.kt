@@ -26,7 +26,7 @@ object CParticleSprites {
      * Forbidden: 不要把它当作 ParticleType 的数值 ID。
      */
     @JvmStatic
-    val DEFAULT: ResourceLocation = ResourceLocation.fromNamespaceAndPath("minecraft", "end_rod")
+    val DEFAULT: ResourceLocation = ResourceLocation("minecraft", "end_rod")
 
     /**
      * 旧低层 API 使用的 UV 数据类型。

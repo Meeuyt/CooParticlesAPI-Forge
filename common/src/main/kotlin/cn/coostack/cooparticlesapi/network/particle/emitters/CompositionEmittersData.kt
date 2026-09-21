@@ -1,11 +1,11 @@
 package cn.coostack.cooparticlesapi.network.particle.emitters
 
 import cn.coostack.cooparticlesapi.network.particle.composition.ParticleComposition
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 
 open class CompositionEmittersData : ControlableParticleData() {
     companion object {
-        val CODEC: ForgeStreamCodec<PacketByteBuf, CompositionEmittersData> = ForgeStreamCodec.of(
+        val CODEC: ForgeStreamCodec<FriendlyByteBuf, CompositionEmittersData> = ForgeStreamCodec.of(
             { buf, data ->
                 ControlableParticleData.PACKET_CODEC.encode(buf, data)
             },
@@ -41,7 +41,7 @@ open class CompositionEmittersData : ControlableParticleData() {
 
     var composition: ParticleComposition? = null
 
-    override fun getCodec(): ForgeStreamCodec<PacketByteBuf, out SerializableData> {
+    override fun getCodec(): ForgeStreamCodec<FriendlyByteBuf, out SerializableData> {
         return CODEC
     }
 

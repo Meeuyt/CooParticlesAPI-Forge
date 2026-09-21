@@ -6,14 +6,14 @@ import cn.coostack.cooparticlesapi.renderer.terrain.CooTerrainEffectComposition
 import cn.coostack.cooparticlesapi.renderer.terrain.CooTerrainEffectGroupSnapshot
 import cn.coostack.cooparticlesapi.renderer.terrain.CooTerrainEffectRegistry
 import net.minecraft.core.BlockPos
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.resources.ResourceLocation
 
 class PacketTerrainEffectGroupS2C {
     var operation: Int = REPLACE
     var dimension: ResourceLocation = ResourceLocation.withDefaultNamespace("overworld")
-    var groupId: ResourceLocation = ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, "empty")
-    var pipelineId: ResourceLocation = ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, "empty")
+    var groupId: ResourceLocation = ResourceLocation(CooParticlesConstants.MOD_ID, "empty")
+    var pipelineId: ResourceLocation = ResourceLocation(CooParticlesConstants.MOD_ID, "empty")
     var startedAt: Long = 0L
     var expiresAt: Long? = null
     var sequence: Long = 0L
@@ -23,7 +23,7 @@ class PacketTerrainEffectGroupS2C {
     var positions: Map<BlockPos, Long> = emptyMap()
     var uniforms: Map<String, CooUniformValue> = emptyMap()
 
-    override fun id(): ResourceLocation = ResourceLocation.fromNamespaceAndPath(
+    override fun id(): ResourceLocation = ResourceLocation(
         CooParticlesConstants.MOD_ID,
         PACKET_ID
     )
@@ -176,7 +176,7 @@ class PacketTerrainEffectGroupS2C {
             }
         }
 
-        private fun encode(buffer: PacketByteBuf, packet: PacketTerrainEffectGroupS2C) {
+        private fun encode(buffer: FriendlyByteBuf, packet: PacketTerrainEffectGroupS2C) {
             buffer.writeByte(packet.operation)
             buffer.writeResourceLocation(packet.dimension)
             buffer.writeResourceLocation(packet.groupId)
@@ -203,7 +203,7 @@ class PacketTerrainEffectGroupS2C {
             }
         }
 
-        private fun decode(buffer: PacketByteBuf): PacketTerrainEffectGroupS2C {
+        private fun decode(buffer: FriendlyByteBuf): PacketTerrainEffectGroupS2C {
             val packet = PacketTerrainEffectGroupS2C()
             packet.operation = buffer.readUnsignedByte().toInt()
             packet.dimension = buffer.readResourceLocation()
@@ -231,7 +231,7 @@ class PacketTerrainEffectGroupS2C {
             return packet
         }
 
-        private fun writeTimedPositions(buffer: PacketByteBuf, positions: Map<BlockPos, Long>) {
+        private fun writeTimedPositions(buffer: FriendlyByteBuf, positions: Map<BlockPos, Long>) {
             val entries = positions.entries.toList()
             buffer.writeVarInt(entries.size)
             if (entries.isEmpty()) return
@@ -247,7 +247,7 @@ class PacketTerrainEffectGroupS2C {
             }
         }
 
-        private fun readTimedPositions(buffer: PacketByteBuf): Map<BlockPos, Long> {
+        private fun readTimedPositions(buffer: FriendlyByteBuf): Map<BlockPos, Long> {
             val count = buffer.readVarInt()
             if (count == 0) return emptyMap()
             val origin = buffer.readBlockPos()
@@ -264,7 +264,7 @@ class PacketTerrainEffectGroupS2C {
             return result
         }
 
-        private fun writePositions(buffer: PacketByteBuf, positions: Collection<BlockPos>) {
+        private fun writePositions(buffer: FriendlyByteBuf, positions: Collection<BlockPos>) {
             val entries = positions.toList()
             buffer.writeVarInt(entries.size)
             if (entries.isEmpty()) return
@@ -277,7 +277,7 @@ class PacketTerrainEffectGroupS2C {
             }
         }
 
-        private fun readPositions(buffer: PacketByteBuf): Set<BlockPos> {
+        private fun readPositions(buffer: FriendlyByteBuf): Set<BlockPos> {
             val count = buffer.readVarInt()
             if (count == 0) return emptySet()
             val origin = buffer.readBlockPos()
@@ -294,7 +294,7 @@ class PacketTerrainEffectGroupS2C {
             }
         }
 
-        private fun writeUniforms(buffer: PacketByteBuf, uniforms: Map<String, CooUniformValue>) {
+        private fun writeUniforms(buffer: FriendlyByteBuf, uniforms: Map<String, CooUniformValue>) {
             buffer.writeVarInt(uniforms.size)
             uniforms.forEach { (name, value) ->
                 buffer.writeUtf(name)
@@ -302,7 +302,7 @@ class PacketTerrainEffectGroupS2C {
             }
         }
 
-        private fun readUniforms(buffer: PacketByteBuf): Map<String, CooUniformValue> {
+        private fun readUniforms(buffer: FriendlyByteBuf): Map<String, CooUniformValue> {
             val count = buffer.readVarInt()
             val result = LinkedHashMap<String, CooUniformValue>(count)
             repeat(count) {

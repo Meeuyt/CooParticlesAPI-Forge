@@ -27,7 +27,7 @@ class BlockTexturePropagationTestOption(
     private val center: BlockPos = player.blockPosition().immutable()
 
     /** 通用地形效果组 ID，同一测试宿主只维护一组批量位置。 */
-    private val effectGroupId: ResourceLocation = ResourceLocation.fromNamespaceAndPath(
+    private val effectGroupId: ResourceLocation = ResourceLocation(
         CooParticlesConstants.MOD_ID,
         "test/terrain_propagation/${center.asLong()}"
     )

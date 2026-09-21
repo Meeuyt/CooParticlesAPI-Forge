@@ -8,7 +8,7 @@ class CharControlerBuffer : ParticleControlerDataBuffer<Char> {
     companion object {
         @JvmStatic
         val id = ParticleControlerDataBuffer.Id(
-            ResourceLocation.fromNamespaceAndPath(
+            ResourceLocation(
                 CooParticlesConstants.MOD_ID, "char"
             )
         )

@@ -11,7 +11,7 @@ abstract class AutoParticleEmitters(pos: Vec3, world: Level?) : ClassParticleEmi
         return this::class.java.name
     }
 
-    override fun getCodec(): ForgeStreamCodec<PacketByteBuf, ParticleEmitters> {
+    override fun getCodec(): ForgeStreamCodec<FriendlyByteBuf, ParticleEmitters> {
         return ParticleEmittersRegistryHelper.generateCodec(this)
     }
 }

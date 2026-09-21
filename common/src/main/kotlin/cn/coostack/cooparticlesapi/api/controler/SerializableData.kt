@@ -6,7 +6,7 @@ import net.minecraft.client.multiplayer.ClientLevel
 import net.minecraft.world.phys.Vec3
 
 interface SerializableData {
-    fun getCodec(): ForgeStreamCodec<PacketByteBuf, out SerializableData>
+    fun getCodec(): ForgeStreamCodec<FriendlyByteBuf, out SerializableData>
 
     fun clone(): SerializableData
 

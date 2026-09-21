@@ -38,7 +38,7 @@ import cn.coostack.cooparticlesapi.utils.interpolator.data.InterpolatorRelativeL
 import com.mojang.serialization.Codec
 import net.minecraft.core.BlockPos
 import net.minecraft.core.registries.BuiltInRegistries
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.level.block.Block

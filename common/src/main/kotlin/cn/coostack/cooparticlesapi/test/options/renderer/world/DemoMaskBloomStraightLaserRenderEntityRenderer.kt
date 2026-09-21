@@ -277,7 +277,7 @@ class DemoMaskBloomStraightLaserRenderEntityRenderer :
                 beamShader = ShaderProgramBuilder()
                     .vertex(
                         IdentifierShader(
-                            ResourceLocation.fromNamespaceAndPath(
+                            ResourceLocation(
                                 CooParticlesConstants.MOD_ID,
                                 "core/vertex/mask_bloom_straight_laser.vsh"
                             ),
@@ -286,7 +286,7 @@ class DemoMaskBloomStraightLaserRenderEntityRenderer :
                     )
                     .fragment(
                         IdentifierShader(
-                            ResourceLocation.fromNamespaceAndPath(
+                            ResourceLocation(
                                 CooParticlesConstants.MOD_ID,
                                 "core/fragment/mask_bloom_straight_laser.fsh"
                             ),
@@ -297,7 +297,7 @@ class DemoMaskBloomStraightLaserRenderEntityRenderer :
                 beamTextures = SimpleTextures().apply {
                     addTexture(
                         IdentifierTexture(
-                            ResourceLocation.fromNamespaceAndPath(
+                            ResourceLocation(
                                 CooParticlesConstants.MOD_ID,
                                 "effect/straight_laser_impact_noise.png"
                             )

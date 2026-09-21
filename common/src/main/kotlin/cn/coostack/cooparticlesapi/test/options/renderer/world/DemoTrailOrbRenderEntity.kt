@@ -47,7 +47,7 @@ class DemoTrailOrbRenderEntity() : AutoRenderEntity(null, Vec3.ZERO), DemoWorldR
     override fun getRenderID(): ResourceLocation = ID
 
     companion object {
-        val ID: ResourceLocation = ResourceLocation.fromNamespaceAndPath(
+        val ID: ResourceLocation = ResourceLocation(
             CooParticlesConstants.MOD_ID,
             "demo_trail_orb_render_entity"
         )

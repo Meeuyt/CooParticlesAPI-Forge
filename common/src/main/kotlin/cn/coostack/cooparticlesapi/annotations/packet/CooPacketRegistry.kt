@@ -5,7 +5,7 @@ import cn.coostack.cooparticlesapi.annotations.CooAutoRegister
 import cn.coostack.cooparticlesapi.network.packet.api.CooPacket
 import cn.coostack.cooparticlesapi.reflect.CooAPIScanner
 import io.netty.buffer.Unpooled
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.resources.ResourceLocation
 import java.util.concurrent.ConcurrentHashMap
 
@@ -74,7 +74,7 @@ object CooPacketRegistry {
                 "CooPacket not registered: ${packet::class.java.name} (id=${packet.id()}). " +
                         "Make sure the class has @CooAutoRegister and is in the scan package"
             )
-        val buf = PacketByteBuf(Unpooled.buffer())
+        val buf = FriendlyByteBuf(Unpooled.buffer())
         entry.codec.encode(buf, packet)
         val bytes = ByteArray(buf.readableBytes())
         buf.readBytes(bytes)
@@ -84,7 +84,7 @@ object CooPacketRegistry {
 
     fun decode(id: ResourceLocation, data: ByteArray): CooPacket? {
         val entry = byId[id] ?: return null
-        val buf = PacketByteBuf(Unpooled.wrappedBuffer(data))
+        val buf = FriendlyByteBuf(Unpooled.wrappedBuffer(data))
         return try {
             entry.codec.decode(buf)
         } catch (e: Throwable) {

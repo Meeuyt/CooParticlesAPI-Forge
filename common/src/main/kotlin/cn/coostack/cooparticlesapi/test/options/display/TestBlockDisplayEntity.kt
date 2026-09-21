@@ -16,7 +16,7 @@ import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.client.renderer.RenderType
 import net.minecraft.client.renderer.texture.OverlayTexture
 import cn.coostack.cooparticlesapi.annotations.codec.ForgeStreamCodec
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.inventory.InventoryMenu
 import net.minecraft.world.item.Items
@@ -99,7 +99,7 @@ class TestBlockDisplayEntity(pos: Vec3, world: Level?) : DisplayEntity(pos, worl
         direction = player.eyePosition - pos
     }
 
-    override fun getCodec(): ForgeStreamCodec<PacketByteBuf, DisplayEntity> {
+    override fun getCodec(): ForgeStreamCodec<FriendlyByteBuf, DisplayEntity> {
         return DisplayEntityRegistryHelper.generateCodec(this)
     }
 

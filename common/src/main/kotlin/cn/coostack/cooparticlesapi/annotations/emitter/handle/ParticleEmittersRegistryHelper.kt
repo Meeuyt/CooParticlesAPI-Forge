@@ -6,7 +6,7 @@ import cn.coostack.cooparticlesapi.network.particle.emitters.ClassEmitters
 import cn.coostack.cooparticlesapi.network.particle.emitters.ClassParticleEmitters
 import cn.coostack.cooparticlesapi.network.particle.emitters.ParticleEmitters
 import cn.coostack.cooparticlesapi.network.particle.emitters.TransformableCParticleEmitter
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.world.level.Level
 import net.minecraft.world.phys.Vec3
 
@@ -26,11 +26,11 @@ object ParticleEmittersRegistryHelper {
         ForgeCodecHelper.updateFields(current, other)
     }
 
-    fun generateCodec(randomInstance: ClassParticleEmitters): ForgeStreamCodec<PacketByteBuf, ParticleEmitters> {
+    fun generateCodec(randomInstance: ClassParticleEmitters): ForgeStreamCodec<FriendlyByteBuf, ParticleEmitters> {
         return generateClassParticleCodec(randomInstance::class.java)
     }
 
-    fun generateClassParticleCodec(type: Class<out ClassParticleEmitters>): ForgeStreamCodec<PacketByteBuf, ParticleEmitters> {
+    fun generateClassParticleCodec(type: Class<out ClassParticleEmitters>): ForgeStreamCodec<FriendlyByteBuf, ParticleEmitters> {
         val constructor = type.getConstructor(Vec3::class.java, Level::class.java)
         return ForgeStreamCodec.of(
             { buf, emitter ->
@@ -47,13 +47,13 @@ object ParticleEmittersRegistryHelper {
         )
     }
 
-    fun generateCodec(randomInstance: TransformableCParticleEmitter): ForgeStreamCodec<PacketByteBuf, ParticleEmitters> {
+    fun generateCodec(randomInstance: TransformableCParticleEmitter): ForgeStreamCodec<FriendlyByteBuf, ParticleEmitters> {
         return generateTransformableCParticleEmitterCodec(randomInstance::class.java)
     }
 
     fun generateTransformableCParticleEmitterCodec(
         type: Class<out TransformableCParticleEmitter>,
-    ): ForgeStreamCodec<PacketByteBuf, ParticleEmitters> {
+    ): ForgeStreamCodec<FriendlyByteBuf, ParticleEmitters> {
         val constructor = type.getConstructor(Vec3::class.java, Level::class.java)
         return ForgeStreamCodec.of(
             { buf, emitter ->
@@ -70,11 +70,11 @@ object ParticleEmittersRegistryHelper {
         )
     }
 
-    fun generateCodec(randomInstance: ClassEmitters): ForgeStreamCodec<PacketByteBuf, ParticleEmitters> {
+    fun generateCodec(randomInstance: ClassEmitters): ForgeStreamCodec<FriendlyByteBuf, ParticleEmitters> {
         return generateClassEmittersCodec(randomInstance::class.java)
     }
 
-    fun generateClassEmittersCodec(type: Class<out ClassEmitters>): ForgeStreamCodec<PacketByteBuf, ParticleEmitters> {
+    fun generateClassEmittersCodec(type: Class<out ClassEmitters>): ForgeStreamCodec<FriendlyByteBuf, ParticleEmitters> {
         val constructor = type.getConstructor(Vec3::class.java, Level::class.java)
         return ForgeStreamCodec.of(
             { buf, emitter ->
@@ -92,7 +92,7 @@ object ParticleEmittersRegistryHelper {
     }
 
     @Suppress("UNCHECKED_CAST")
-    private fun encodeFields(type: Class<*>, emitter: Any, buf: PacketByteBuf) {
+    private fun encodeFields(type: Class<*>, emitter: Any, buf: FriendlyByteBuf) {
         CodecFieldAccessor.fields(type).forEach { field ->
             val codec = ForgeCodecHelper.registryCodecOf(CodecFieldAccessor.valueType(field)) as
                     CommonStreamCodec<Any>
@@ -101,7 +101,7 @@ object ParticleEmittersRegistryHelper {
     }
 
     @Suppress("UNCHECKED_CAST")
-    private fun decodeFields(type: Class<*>, emitter: Any, buf: PacketByteBuf) {
+    private fun decodeFields(type: Class<*>, emitter: Any, buf: FriendlyByteBuf) {
         CodecFieldAccessor.fields(type).forEach { field ->
             val codec = ForgeCodecHelper.registryCodecOf(CodecFieldAccessor.valueType(field)) as
                     CommonStreamCodec<Any>

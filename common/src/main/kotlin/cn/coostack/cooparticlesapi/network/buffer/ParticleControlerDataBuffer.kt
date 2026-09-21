@@ -15,7 +15,7 @@ interface ParticleControlerDataBuffer<T> {
                 }
                 val namespace = split[0]
                 val id = split[1]
-                return Id(ResourceLocation.fromNamespaceAndPath(namespace, id))
+                return Id(ResourceLocation(namespace, id))
             }
         }
     }

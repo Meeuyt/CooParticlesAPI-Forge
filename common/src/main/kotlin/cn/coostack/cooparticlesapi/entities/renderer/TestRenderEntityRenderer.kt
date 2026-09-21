@@ -13,7 +13,7 @@ import kotlin.math.sin
 
 class TestRenderEntityRenderer(context: EntityRendererProvider.Context) : EntityRenderer<TestRenderEntity>(context) {
     override fun getTextureLocation(location: TestRenderEntity): ResourceLocation {
-        return ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, "NONE")
+        return ResourceLocation(CooParticlesConstants.MOD_ID, "NONE")
     }
 
     override fun render(

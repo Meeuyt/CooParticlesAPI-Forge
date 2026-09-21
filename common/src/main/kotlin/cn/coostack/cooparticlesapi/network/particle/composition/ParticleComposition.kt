@@ -29,7 +29,7 @@ import cn.coostack.cooparticlesapi.utils.helper.impl.composition.CParticleCompos
 import cn.coostack.cooparticlesapi.utils.helper.impl.composition.CompositionStatusHelper
 import net.minecraft.client.Minecraft
 import net.minecraft.client.multiplayer.ClientLevel
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.world.level.Level
 import net.minecraft.world.phys.Vec3
 import org.joml.Matrix4f
@@ -44,7 +44,7 @@ abstract class ParticleComposition : ServerControler<ParticleComposition>,
     Controlable<ParticleComposition>, Tickable<ParticleComposition>, NetworkDirtyMarkable {
     companion object {
         @JvmStatic
-        fun encodeBase(data: ParticleComposition, buf: PacketByteBuf) {
+        fun encodeBase(data: ParticleComposition, buf: FriendlyByteBuf) {
             buf.writeUUID(data.controlUUID)
             buf.writeDouble(data.visibleRange)
             buf.writeBoolean(data.canceled)
@@ -57,7 +57,7 @@ abstract class ParticleComposition : ServerControler<ParticleComposition>,
         }
 
         @JvmStatic
-        fun decodeBase(instance: ParticleComposition, buf: PacketByteBuf) {
+        fun decodeBase(instance: ParticleComposition, buf: FriendlyByteBuf) {
             instance.apply {
                 controlUUID = buf.readUUID()
                 visibleRange = buf.readDouble()

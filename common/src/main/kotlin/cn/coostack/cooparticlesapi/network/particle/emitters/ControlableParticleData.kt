@@ -15,7 +15,7 @@ import cn.coostack.cooparticlesapi.utils.RelativeLocation
 import net.minecraft.client.multiplayer.ClientLevel
 import net.minecraft.client.particle.ParticleRenderType
 import net.minecraft.core.particles.ParticleOptions
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.world.phys.Vec3
 import org.joml.Vector3f
 import java.util.UUID
@@ -32,7 +32,7 @@ open class ControlableParticleData : SerializableData {
                 { buf -> decodeBase(buf, ControlableParticleData()) },
             )
 
-        internal fun encodeBase(buf: PacketByteBuf, data: ControlableParticleData) {
+        internal fun encodeBase(buf: FriendlyByteBuf, data: ControlableParticleData) {
             buf.writeUUID(data.uuid)
             buf.writeVec3(data.velocity)
             buf.writeFloat(data.weightSize)
@@ -59,7 +59,7 @@ open class ControlableParticleData : SerializableData {
             buf.writeFloat(data.depthSize)
         }
 
-        internal fun decodeBase(buf: PacketByteBuf, data: ControlableParticleData): ControlableParticleData {
+        internal fun decodeBase(buf: FriendlyByteBuf, data: ControlableParticleData): ControlableParticleData {
             data.uuid = buf.readUUID()
             data.velocity = buf.readVec3()
             data.weightSize = buf.readFloat()
@@ -111,7 +111,7 @@ open class ControlableParticleData : SerializableData {
     var roll: Float = 0f
     var depthSize: Float = 0.3f
 
-    override fun getCodec(): ForgeStreamCodec<PacketByteBuf, out SerializableData> {
+    override fun getCodec(): ForgeStreamCodec<FriendlyByteBuf, out SerializableData> {
         return PACKET_CODEC
     }
 

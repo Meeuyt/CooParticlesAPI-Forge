@@ -4,13 +4,13 @@ import cn.coostack.cooparticlesapi.annotations.codec.CodecFieldAccessor
 import cn.coostack.cooparticlesapi.annotations.codec.CommonStreamCodec
 import cn.coostack.cooparticlesapi.annotations.codec.ForgeCodecHelper
 import cn.coostack.cooparticlesapi.display.DisplayEntity
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.world.level.Level
 import net.minecraft.world.phys.Vec3
 
 object DisplayEntityRegistryHelper {
 
-    fun generateCodec(randomInstance: DisplayEntity): ForgeStreamCodec<PacketByteBuf, DisplayEntity> {
+    fun generateCodec(randomInstance: DisplayEntity): ForgeStreamCodec<FriendlyByteBuf, DisplayEntity> {
         val type = randomInstance::class.java
         val constructor = type.getConstructor(Vec3::class.java, Level::class.java)
         return ForgeStreamCodec.of(

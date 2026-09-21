@@ -73,7 +73,7 @@ object ControlableParticleEffectRegistry {
             if (text.contains(':')) {
                 ResourceLocation.parse(text)
             } else {
-                ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, text)
+                ResourceLocation(CooParticlesConstants.MOD_ID, text)
             }
         }.getOrNull()
     }

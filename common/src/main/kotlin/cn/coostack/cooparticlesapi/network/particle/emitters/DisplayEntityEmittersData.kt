@@ -1,11 +1,11 @@
 package cn.coostack.cooparticlesapi.network.particle.emitters
 
 import cn.coostack.cooparticlesapi.display.DisplayEntity
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 
 open class DisplayEntityEmittersData : ControlableParticleData() {
     companion object {
-        val CODEC: ForgeStreamCodec<PacketByteBuf, DisplayEntityEmittersData> = ForgeStreamCodec.of(
+        val CODEC: ForgeStreamCodec<FriendlyByteBuf, DisplayEntityEmittersData> = ForgeStreamCodec.of(
             { buf, data ->
                 ControlableParticleData.PACKET_CODEC.encode(buf, data)
             },
@@ -41,7 +41,7 @@ open class DisplayEntityEmittersData : ControlableParticleData() {
 
     var displayEntity: DisplayEntity? = null
 
-    override fun getCodec(): ForgeStreamCodec<PacketByteBuf, out SerializableData> {
+    override fun getCodec(): ForgeStreamCodec<FriendlyByteBuf, out SerializableData> {
         return CODEC
     }
 

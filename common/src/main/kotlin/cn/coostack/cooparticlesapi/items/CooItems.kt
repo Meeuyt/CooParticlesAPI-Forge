@@ -43,7 +43,7 @@ object CooItems {
     }
 
     fun register(id: String, item: Supplier<Item>): CommonDeferredItem {
-        val location = ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, id)
+        val location = ResourceLocation(CooParticlesConstants.MOD_ID, id)
         val di = CommonDeferredItem(location, item)
         itemsWithID[location] = di
         items.add(di)

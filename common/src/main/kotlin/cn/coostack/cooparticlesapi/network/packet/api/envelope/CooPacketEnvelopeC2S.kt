@@ -1,7 +1,7 @@
 package cn.coostack.cooparticlesapi.network.packet.api.envelope
 
 import cn.coostack.cooparticlesapi.CooParticlesConstants
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.resources.ResourceLocation
 
 class CooPacketEnvelopeC2S(
@@ -13,7 +13,7 @@ class CooPacketEnvelopeC2S(
 ) {
     companion object {
         @JvmStatic
-        fun write(buf: PacketByteBuf, packet: CooPacketEnvelopeC2S) {
+        fun write(buf: FriendlyByteBuf, packet: CooPacketEnvelopeC2S) {
             buf.writeVarInt(packet.kindId)
             buf.writeResourceLocation(packet.packetId)
             buf.writeLong(packet.correlationId)
@@ -22,7 +22,7 @@ class CooPacketEnvelopeC2S(
         }
 
         @JvmStatic
-        fun read(buf: PacketByteBuf): CooPacketEnvelopeC2S {
+        fun read(buf: FriendlyByteBuf): CooPacketEnvelopeC2S {
             return CooPacketEnvelopeC2S(
                 kindId = buf.readVarInt(),
                 packetId = buf.readResourceLocation(),

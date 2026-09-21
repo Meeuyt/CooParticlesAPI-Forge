@@ -1,7 +1,7 @@
 package cn.coostack.cooparticlesapi.renderer.runtime
 
 import cn.coostack.cooparticlesapi.renderer.RenderEntity
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.resources.ResourceLocation
 
 object ClientRenderEntityRegistry {
@@ -19,7 +19,7 @@ object ClientRenderEntityRegistry {
 
     fun register(
         id: ResourceLocation,
-        codec: ForgeStreamCodec<PacketByteBuf, RenderEntity>,
+        codec: ForgeStreamCodec<FriendlyByteBuf, RenderEntity>,
         rendererFactory: (() -> RenderEntityRenderer<out RenderEntity>)? = null
     ) {
         register(id, ClientRenderEntityType(codec, rendererFactory))

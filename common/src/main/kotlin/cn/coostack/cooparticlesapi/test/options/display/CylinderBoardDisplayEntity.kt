@@ -89,7 +89,7 @@ class CylinderBoardDisplayEntity() : AutoDisplayEntity(Vec3.ZERO, null) {
         val basis = MinecraftRendererUtil.axialBillboardBasis(direction, camera, pos)
         val consumer = buffer.getBuffer(
             CooParticlesRenderTypes.entityCutoutEmissive(
-                ResourceLocation.fromNamespaceAndPath(
+                ResourceLocation(
                     CooParticlesConstants.MOD_ID, "none"
                 ), 5f
             )

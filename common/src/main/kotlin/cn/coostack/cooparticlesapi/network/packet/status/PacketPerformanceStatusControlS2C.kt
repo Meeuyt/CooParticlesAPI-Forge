@@ -22,7 +22,7 @@ class PacketPerformanceStatusControlS2C() : CooPacket() {
 
     /** 返回该业务包的稳定协议 ID。 */
     override fun id(): ResourceLocation {
-        return ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, PACKET_ID)
+        return ResourceLocation(CooParticlesConstants.MOD_ID, PACKET_ID)
     }
 
     /** 经纯 common bridge 把动作交给客户端初始化时安装的控制器。 */

@@ -76,9 +76,9 @@ internal object CooShaderSourceLoader {
             return requireNotNull(ResourceLocation.tryParse(path)) {
                 "Invalid Coo shader import: $path"
             }.let { include ->
-                ResourceLocation.fromNamespaceAndPath(include.namespace, "shader/${include.path}")
+                ResourceLocation(include.namespace, "shader/${include.path}")
             }
         }
-        return ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, "shader/include/$path")
+        return ResourceLocation(CooParticlesConstants.MOD_ID, "shader/include/$path")
     }
 }

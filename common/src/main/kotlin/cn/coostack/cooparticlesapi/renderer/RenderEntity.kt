@@ -6,7 +6,7 @@ import cn.coostack.cooparticlesapi.api.controler.server.ServerControler
 import cn.coostack.cooparticlesapi.renderer.server.ServerRenderEntityManager
 import cn.coostack.cooparticlesapi.utils.RelativeLocation
 import io.netty.buffer.Unpooled
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.level.Level
@@ -26,7 +26,7 @@ abstract class RenderEntity(var world: Level?, var pos: Vec3 = Vec3.ZERO) : Serv
     private var syncOnce = false
 
     companion object {
-        fun decodeBase(buf: PacketByteBuf, instance: RenderEntity) {
+        fun decodeBase(buf: FriendlyByteBuf, instance: RenderEntity) {
             instance.uuid = buf.readUUID()
             instance.pos = buf.readVec3()
             instance.canceled = buf.readBoolean()
@@ -34,7 +34,7 @@ abstract class RenderEntity(var world: Level?, var pos: Vec3 = Vec3.ZERO) : Serv
             instance.dirty = false
         }
 
-        fun encodeBase(buf: PacketByteBuf, entity: RenderEntity) {
+        fun encodeBase(buf: FriendlyByteBuf, entity: RenderEntity) {
             buf.writeUUID(entity.uuid)
             buf.writeVec3(entity.pos)
             buf.writeBoolean(entity.canceled)
@@ -43,9 +43,9 @@ abstract class RenderEntity(var world: Level?, var pos: Vec3 = Vec3.ZERO) : Serv
 
         fun <T : RenderEntity> createCodec(
             factory: () -> T,
-            encodeExtra: (PacketByteBuf, T) -> Unit = { _, _ -> },
-            decodeExtra: (PacketByteBuf, T) -> Unit = { _, _ -> }
-        ): ForgeStreamCodec<PacketByteBuf, RenderEntity> {
+            encodeExtra: (FriendlyByteBuf, T) -> Unit = { _, _ -> },
+            decodeExtra: (FriendlyByteBuf, T) -> Unit = { _, _ -> }
+        ): ForgeStreamCodec<FriendlyByteBuf, RenderEntity> {
             return ForgeStreamCodec.of(
                 { buf, entity ->
                     encodeBase(buf, entity)
@@ -125,7 +125,7 @@ abstract class RenderEntity(var world: Level?, var pos: Vec3 = Vec3.ZERO) : Serv
         if (!force && !dirty && method == PacketRenderEntityS2C.Method.TOGGLE) {
             return null
         }
-        val buf = PacketByteBuf(Unpooled.buffer())
+        val buf = FriendlyByteBuf(Unpooled.buffer())
         getCodec().encode(buf, this)
         val bytes = ByteArray(buf.readableBytes())
         buf.readBytes(bytes)
@@ -193,7 +193,7 @@ abstract class RenderEntity(var world: Level?, var pos: Vec3 = Vec3.ZERO) : Serv
         this.world = another.world
     }
 
-    abstract fun getCodec(): ForgeStreamCodec<PacketByteBuf, RenderEntity>
+    abstract fun getCodec(): ForgeStreamCodec<FriendlyByteBuf, RenderEntity>
 
     abstract fun getRenderID(): ResourceLocation
 

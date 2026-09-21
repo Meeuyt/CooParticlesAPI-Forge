@@ -9,7 +9,7 @@ class Vec3dControlerBuffer : ParticleControlerDataBuffer<Vec3> {
     companion object {
         @JvmStatic
         val id = ParticleControlerDataBuffer.Id(
-            ResourceLocation.fromNamespaceAndPath(
+            ResourceLocation(
                 CooParticlesConstants.MOD_ID, "vec3d"
             )
         )

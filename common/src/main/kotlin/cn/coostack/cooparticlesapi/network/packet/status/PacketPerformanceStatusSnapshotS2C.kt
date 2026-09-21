@@ -104,7 +104,7 @@ class PacketPerformanceStatusSnapshotS2C : CooPacket() {
 
     /** 返回该业务包的稳定协议 ID。 */
     override fun id(): ResourceLocation {
-        return ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, PACKET_ID)
+        return ResourceLocation(CooParticlesConstants.MOD_ID, PACKET_ID)
     }
 
     /** 把协议字段恢复为不可变服务端快照。 */

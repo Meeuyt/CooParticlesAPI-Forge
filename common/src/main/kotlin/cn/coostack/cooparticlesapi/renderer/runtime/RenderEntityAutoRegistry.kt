@@ -7,7 +7,7 @@ import cn.coostack.cooparticlesapi.coofx.server.CooFxSceneRenderEntity
 import cn.coostack.cooparticlesapi.reflect.CooAPIScanner
 import cn.coostack.cooparticlesapi.reflect.SimpleClassInfo
 import cn.coostack.cooparticlesapi.renderer.RenderEntity
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.level.Level
 import net.minecraft.world.phys.Vec3
@@ -274,7 +274,7 @@ object RenderEntityAutoRegistry {
     private data class EntityDescriptor(
         val entityClass: Class<out RenderEntity>,
         val id: ResourceLocation,
-        val codec: ForgeStreamCodec<PacketByteBuf, RenderEntity>
+        val codec: ForgeStreamCodec<FriendlyByteBuf, RenderEntity>
     )
 
     private data class RendererDescriptor(

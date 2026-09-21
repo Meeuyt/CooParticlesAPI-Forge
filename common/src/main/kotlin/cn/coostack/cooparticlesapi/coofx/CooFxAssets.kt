@@ -16,5 +16,5 @@ fun coofxAsset(modid: String, assetID: String): ResourceLocation {
         "CooFX assetID 必须是小写单段资源名，只能包含 a-z、0-9、点、下划线和短横线"
     }
     require(".." !in assetID) { "CooFX assetID 不能包含 .. 路径片段" }
-    return ResourceLocation.fromNamespaceAndPath(modid, "coofx/$assetID/$assetID.coofx.json")
+    return ResourceLocation(modid, "coofx/$assetID/$assetID.coofx.json")
 }

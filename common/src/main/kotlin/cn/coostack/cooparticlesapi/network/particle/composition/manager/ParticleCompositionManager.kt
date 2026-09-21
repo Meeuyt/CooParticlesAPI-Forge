@@ -12,7 +12,7 @@ import cn.coostack.cooparticlesapi.platform.CooParticlesServices
 import cn.coostack.cooparticlesapi.reflect.CooAPIScanner
 import cn.coostack.cooparticlesapi.utils.RelativeLocation
 import io.netty.buffer.Unpooled
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.entity.player.Player
 import java.lang.ref.ReferenceQueue
@@ -31,7 +31,7 @@ object ParticleCompositionManager {
 
     val playerPlayerVisibleSet = ConcurrentHashMap<UUID, HashSet<ParticleComposition>>()
 
-    val registeredTypes = ConcurrentHashMap<String, ForgeStreamCodec<PacketByteBuf, ParticleComposition>>()
+    val registeredTypes = ConcurrentHashMap<String, ForgeStreamCodec<FriendlyByteBuf, ParticleComposition>>()
 
     internal fun setClientLoaded(composition: ParticleComposition, loaded: Boolean) {
         if (loaded) {
@@ -184,7 +184,7 @@ object ParticleCompositionManager {
         }
         val registryAccess = CooParticlesAPI.registryAccessOrNull ?: return
         val type = composition::class.java.name
-        val buf = PacketByteBuf(Unpooled.buffer())
+        val buf = FriendlyByteBuf(Unpooled.buffer())
         val data = try {
             registeredTypes[type]!!.encode(buf, composition)
             ByteArray(buf.readableBytes()).also { buf.readBytes(it) }

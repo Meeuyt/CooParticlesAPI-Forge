@@ -4,7 +4,7 @@ package cn.coostack.cooparticlesapi.cparticle
 
 import net.minecraft.core.particles.ParticleOptions
 import net.minecraft.core.particles.ParticleTypes
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.level.block.Block as MinecraftBlock
@@ -18,7 +18,7 @@ sealed interface CParticleTextureSource {
         val STREAM_CODEC: ForgeStreamCodec<CParticleTextureSource> = ForgeStreamCodec.of(::encodeSource, ::decodeSource)
 
         private fun encodeSource(
-            buf: PacketByteBuf,
+            buf: FriendlyByteBuf,
             source: CParticleTextureSource,
         ) {
             when (source) {
@@ -64,7 +64,7 @@ sealed interface CParticleTextureSource {
             }
         }
 
-        private fun decodeSource(buf: PacketByteBuf): CParticleTextureSource {
+        private fun decodeSource(buf: FriendlyByteBuf): CParticleTextureSource {
             return when (val type = buf.readUnsignedByte().toInt()) {
             0 -> ParticleEffect(
                 ForgeCodecHelper.particleCodecOf(ParticleTypes.END_ROD).decode(buf),
@@ -110,14 +110,14 @@ sealed interface CParticleTextureSource {
             }
         }
 
-        private fun writeUv(buf: PacketByteBuf, uv: CParticleUv) {
+        private fun writeUv(buf: FriendlyByteBuf, uv: CParticleUv) {
             buf.writeFloat(uv.u0)
             buf.writeFloat(uv.v0)
             buf.writeFloat(uv.u1)
             buf.writeFloat(uv.v1)
         }
 
-        private fun readUv(buf: PacketByteBuf): CParticleUv = CParticleUv(
+        private fun readUv(buf: FriendlyByteBuf): CParticleUv = CParticleUv(
             buf.readFloat(),
             buf.readFloat(),
             buf.readFloat(),

@@ -12,6 +12,6 @@ internal object TerrainFboExampleIds {
 
     /** 把示例路径转换为模组命名空间下的资源 ID。 */
     private fun id(path: String): ResourceLocation {
-        return ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, path)
+        return ResourceLocation(CooParticlesConstants.MOD_ID, path)
     }
 }

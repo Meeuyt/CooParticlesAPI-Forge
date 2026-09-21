@@ -1,7 +1,7 @@
 package cn.coostack.cooparticlesapi.network.packet.server
 
 import cn.coostack.cooparticlesapi.CooParticlesConstants
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.phys.Vec3
 
@@ -42,8 +42,8 @@ class PacketCameraShakeS2C(
     }
 
     companion object {
-        private val identifierID = ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, "camara_shake")
-        val payloadID = ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, "camara_shake")
+        private val identifierID = ResourceLocation(CooParticlesConstants.MOD_ID, "camara_shake")
+        val payloadID = ResourceLocation(CooParticlesConstants.MOD_ID, "camara_shake")
 
         val CODEC = ForgeStreamCodec.of({ packet, buf ->
             buf.writeByte(packet.operation.id)

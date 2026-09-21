@@ -62,15 +62,15 @@ internal class CooFxSourceShader(
 }
 
 internal object CooFxShaderProgramFactory {
-    private val vertexLocation = ResourceLocation.fromNamespaceAndPath(
+    private val vertexLocation = ResourceLocation(
         CooParticlesConstants.MOD_ID,
         "shaders/coofx/mesh_particle.vsh",
     )
-    private val fragmentLocation = ResourceLocation.fromNamespaceAndPath(
+    private val fragmentLocation = ResourceLocation(
         CooParticlesConstants.MOD_ID,
         "shaders/coofx/mesh_particle.fsh",
     )
-    private val programId = ResourceLocation.fromNamespaceAndPath(
+    private val programId = ResourceLocation(
         CooParticlesConstants.MOD_ID,
         "coofx/mesh_particle",
     )

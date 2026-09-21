@@ -163,7 +163,7 @@ class DemoMaskBloomStraightLaserRenderEntity(
         internal const val MIN_BEAM_LENGTH = 0.05F
 
         @JvmField
-        val ID: ResourceLocation = ResourceLocation.fromNamespaceAndPath(
+        val ID: ResourceLocation = ResourceLocation(
             CooParticlesConstants.MOD_ID,
             RENDER_ENTITY_ID
         )

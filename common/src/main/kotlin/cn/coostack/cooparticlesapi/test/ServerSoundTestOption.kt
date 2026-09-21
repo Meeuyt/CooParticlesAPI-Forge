@@ -333,5 +333,5 @@ private val LOOP_SOUND = sound("test.laser_loop")
 private val OBLITERATION_SOUND = sound("test.laser_obliteration")
 
 private fun sound(path: String): ResourceLocation {
-    return ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, path)
+    return ResourceLocation(CooParticlesConstants.MOD_ID, path)
 }

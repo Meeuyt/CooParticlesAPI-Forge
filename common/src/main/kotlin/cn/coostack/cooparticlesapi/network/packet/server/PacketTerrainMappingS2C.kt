@@ -6,15 +6,15 @@ import cn.coostack.cooparticlesapi.renderer.terrain.CooTerrainEffectComposition
 import cn.coostack.cooparticlesapi.renderer.terrain.CooTerrainMappingInstance
 import cn.coostack.cooparticlesapi.renderer.terrain.CooTerrainMappingRegion
 import cn.coostack.cooparticlesapi.renderer.terrain.CooTerrainMappingRegistry
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.resources.ResourceLocation
 
 class PacketTerrainMappingS2C {
     var operation: Int = REPLACE
     var dimension: ResourceLocation = ResourceLocation.withDefaultNamespace("overworld")
-    var instanceId: ResourceLocation = ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, "empty")
-    var mappingId: ResourceLocation = ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, "empty")
-    var pipelineId: ResourceLocation = ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, "empty")
+    var instanceId: ResourceLocation = ResourceLocation(CooParticlesConstants.MOD_ID, "empty")
+    var mappingId: ResourceLocation = ResourceLocation(CooParticlesConstants.MOD_ID, "empty")
+    var pipelineId: ResourceLocation = ResourceLocation(CooParticlesConstants.MOD_ID, "empty")
     var region: CooTerrainMappingRegion? = null
     var startedAt: Long = 0L
     var expiresAt: Long? = null
@@ -25,7 +25,7 @@ class PacketTerrainMappingS2C {
     var composition: CooTerrainEffectComposition = CooTerrainEffectComposition.REPLACE
     var uniforms: Map<String, CooUniformValue> = emptyMap()
 
-    override fun id(): ResourceLocation = ResourceLocation.fromNamespaceAndPath(
+    override fun id(): ResourceLocation = ResourceLocation(
         CooParticlesConstants.MOD_ID,
         PACKET_ID
     )
@@ -107,7 +107,7 @@ class PacketTerrainMappingS2C {
             it.revision = revision
         }
 
-        private fun encode(buffer: PacketByteBuf, packet: PacketTerrainMappingS2C) {
+        private fun encode(buffer: FriendlyByteBuf, packet: PacketTerrainMappingS2C) {
             buffer.writeByte(packet.operation)
             buffer.writeResourceLocation(packet.dimension)
             buffer.writeResourceLocation(packet.instanceId)
@@ -131,7 +131,7 @@ class PacketTerrainMappingS2C {
             }
         }
 
-        private fun decode(buffer: PacketByteBuf): PacketTerrainMappingS2C {
+        private fun decode(buffer: FriendlyByteBuf): PacketTerrainMappingS2C {
             val packet = PacketTerrainMappingS2C()
             packet.operation = buffer.readUnsignedByte().toInt()
             packet.dimension = buffer.readResourceLocation()
@@ -155,7 +155,7 @@ class PacketTerrainMappingS2C {
             return packet
         }
 
-        private fun writeUniforms(buffer: PacketByteBuf, uniforms: Map<String, CooUniformValue>) {
+        private fun writeUniforms(buffer: FriendlyByteBuf, uniforms: Map<String, CooUniformValue>) {
             buffer.writeVarInt(uniforms.size)
             uniforms.forEach { (name, value) ->
                 buffer.writeUtf(name)
@@ -163,7 +163,7 @@ class PacketTerrainMappingS2C {
             }
         }
 
-        private fun readUniforms(buffer: PacketByteBuf): Map<String, CooUniformValue> {
+        private fun readUniforms(buffer: FriendlyByteBuf): Map<String, CooUniformValue> {
             val count = buffer.readVarInt()
             val result = LinkedHashMap<String, CooUniformValue>(count)
             repeat(count) {

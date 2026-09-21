@@ -16,7 +16,7 @@ import net.minecraft.resources.ResourceLocation
 
 /** RenderEntity 的 world attachment 捕获与 fullscreen graph 执行桥。 */
 internal object CooPipelineRuntimeEffect {
-    private val effectType = ResourceLocation.fromNamespaceAndPath(
+    private val effectType = ResourceLocation(
         CooParticlesConstants.MOD_ID,
         "effect/pipeline"
     )
@@ -245,7 +245,7 @@ internal object CooPipelineRuntimeEffect {
 
     /** 为同一 pipeline 的不同 batch 隔离命名 framebuffer。 */
     private fun ResourceLocation.batchTarget(batchId: Int): ResourceLocation {
-        return ResourceLocation.fromNamespaceAndPath(namespace, "$path/batch_$batchId")
+        return ResourceLocation(namespace, "$path/batch_$batchId")
     }
 
     /** 把 world attachment 的资源 id 重写为当前参数 batch 的独立目标。 */

@@ -5,7 +5,7 @@ import cn.coostack.cooparticlesapi.annotations.codec.CodecFieldAccessor
 import cn.coostack.cooparticlesapi.annotations.codec.CommonStreamCodec
 import cn.coostack.cooparticlesapi.annotations.codec.ForgeCodecHelper
 import cn.coostack.cooparticlesapi.renderer.RenderEntity
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.world.level.Level
 import net.minecraft.world.phys.Vec3
 import java.lang.reflect.Modifier

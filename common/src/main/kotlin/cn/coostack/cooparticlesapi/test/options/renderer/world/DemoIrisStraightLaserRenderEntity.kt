@@ -163,7 +163,7 @@ class DemoIrisStraightLaserRenderEntity() : AutoRenderEntity(null, Vec3.ZERO) {
         const val MIN_BEAM_LENGTH = 0.05f
         const val MIN_DIRECTION_LENGTH_SQR = 1.0E-6
 
-        val ID: ResourceLocation = ResourceLocation.fromNamespaceAndPath(
+        val ID: ResourceLocation = ResourceLocation(
             CooParticlesConstants.MOD_ID,
             "demo_iris_straight_laser_render_entity"
         )

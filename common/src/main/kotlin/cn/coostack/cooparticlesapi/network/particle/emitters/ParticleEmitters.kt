@@ -34,7 +34,7 @@ interface ParticleEmitters : ServerControler<ParticleEmitters>, NetworkDirtyMark
 
     fun update(emitters: ParticleEmitters)
 
-    fun getCodec(): ForgeStreamCodec<PacketByteBuf, ParticleEmitters>
+    fun getCodec(): ForgeStreamCodec<FriendlyByteBuf, ParticleEmitters>
 
     override fun getValue(): ParticleEmitters {
         return this

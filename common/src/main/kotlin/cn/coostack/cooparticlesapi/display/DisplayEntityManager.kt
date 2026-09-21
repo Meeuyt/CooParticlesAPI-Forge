@@ -14,7 +14,7 @@ import io.netty.buffer.Unpooled
 import net.minecraft.client.Camera
 import net.minecraft.client.DeltaTracker
 import net.minecraft.client.renderer.MultiBufferSource
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.level.Level
 import net.minecraft.world.phys.Vec3
@@ -29,7 +29,7 @@ object DisplayEntityManager {
 
     val playerVisibleSet = ConcurrentHashMap<UUID, HashSet<DisplayEntity>>()
 
-    val registeredTypes = ConcurrentHashMap<String, ForgeStreamCodec<PacketByteBuf, DisplayEntity>>()
+    val registeredTypes = ConcurrentHashMap<String, ForgeStreamCodec<FriendlyByteBuf, DisplayEntity>>()
 
     fun clientEntityCount(): Int = clientView.size
 
@@ -206,7 +206,7 @@ object DisplayEntityManager {
         val registryAccess = CooParticlesAPI.registryAccessOrNull ?: return
         val uuid = entity.controlUUID
         val type = entity::class.java.name
-        val buf = PacketByteBuf(Unpooled.buffer())
+        val buf = FriendlyByteBuf(Unpooled.buffer())
         val data = try {
             entity.getCodec().encode(buf, entity)
             ByteArray(buf.readableBytes()).also { buf.readBytes(it) }

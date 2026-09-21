@@ -17,7 +17,7 @@ object CooItemGroup {
         .register(
             CommonDeferredRegistry(
                 BuiltInRegistries.CREATIVE_MODE_TAB,
-                ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, "coo_group")
+                ResourceLocation(CooParticlesConstants.MOD_ID, "coo_group")
             ) {
                 CreativeModeTab.Builder(null, -1)
                     .title(Component.translatable("item.coo_group"))

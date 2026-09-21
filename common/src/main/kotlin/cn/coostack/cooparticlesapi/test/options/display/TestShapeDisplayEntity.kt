@@ -14,7 +14,7 @@ import net.minecraft.client.renderer.LightTexture
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.client.renderer.texture.OverlayTexture
 import cn.coostack.cooparticlesapi.annotations.codec.ForgeStreamCodec
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.level.Level
 import net.minecraft.world.phys.Vec3
@@ -37,7 +37,7 @@ import kotlin.math.sin
 @CooAutoRegister
 class TestShapeDisplayEntity(pos: Vec3, world: Level?) : DisplayEntity(pos, world) {
     companion object {
-        private val LAYERED_GLOW_ID = ResourceLocation.fromNamespaceAndPath(
+        private val LAYERED_GLOW_ID = ResourceLocation(
             CooParticlesConstants.MOD_ID,
             "glow_layered"
         )
@@ -174,7 +174,7 @@ class TestShapeDisplayEntity(pos: Vec3, world: Level?) : DisplayEntity(pos, worl
 //        direction = player.eyePosition - pos
     }
 
-    override fun getCodec(): ForgeStreamCodec<PacketByteBuf, DisplayEntity> {
+    override fun getCodec(): ForgeStreamCodec<FriendlyByteBuf, DisplayEntity> {
         return DisplayEntityRegistryHelper.generateCodec(this)
     }
 

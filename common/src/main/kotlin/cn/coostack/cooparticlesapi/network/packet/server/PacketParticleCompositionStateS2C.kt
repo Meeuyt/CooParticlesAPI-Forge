@@ -1,7 +1,7 @@
 package cn.coostack.cooparticlesapi.network.packet.server
 
 import cn.coostack.cooparticlesapi.CooParticlesConstants
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.phys.Vec3
 import java.util.UUID
@@ -17,8 +17,8 @@ class PacketParticleCompositionStateS2C(
 ) {
     companion object {
         private val identifierID =
-            ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, "particle_composition_state")
-        val payloadID = ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, "particle_composition_state")
+            ResourceLocation(CooParticlesConstants.MOD_ID, "particle_composition_state")
+        val payloadID = ResourceLocation(CooParticlesConstants.MOD_ID, "particle_composition_state")
         val CODEC = ForgeStreamCodec.of({ packet, buf ->
             buf.writeUUID(packet.uuid)
             buf.writeVec3(packet.position)

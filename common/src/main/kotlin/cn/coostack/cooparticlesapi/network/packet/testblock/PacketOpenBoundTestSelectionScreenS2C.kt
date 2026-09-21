@@ -23,7 +23,7 @@ class PacketOpenBoundTestSelectionScreenS2C() : CooPacket() {
     @CodecField var statuses: List<String> = emptyList()
 
     override fun id(): ResourceLocation {
-        return ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, "open_bound_test_selection_screen_s2c")
+        return ResourceLocation(CooParticlesConstants.MOD_ID, "open_bound_test_selection_screen_s2c")
     }
 
     override fun onClientReceive(context: ClientContext) {

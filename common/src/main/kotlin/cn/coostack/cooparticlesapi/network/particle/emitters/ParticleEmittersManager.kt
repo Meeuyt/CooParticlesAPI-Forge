@@ -23,7 +23,7 @@ import java.util.UUID
 import java.util.concurrent.ConcurrentHashMap
 
 object ParticleEmittersManager {
-    val emittersCodec = HashMap<String, ForgeStreamCodec<PacketByteBuf, ParticleEmitters>>()
+    val emittersCodec = HashMap<String, ForgeStreamCodec<FriendlyByteBuf, ParticleEmitters>>()
 
     val serverEmitters = HashMap<UUID, ParticleEmitters>()
     internal val visible = ConcurrentHashMap<UUID, MutableSet<ParticleEmitters>>()
@@ -35,15 +35,15 @@ object ParticleEmittersManager {
 
     fun serverEmitterCount(): Int = serverEmitters.size
 
-    fun getCodecFromID(id: String): ForgeStreamCodec<PacketByteBuf, ParticleEmitters>? {
+    fun getCodecFromID(id: String): ForgeStreamCodec<FriendlyByteBuf, ParticleEmitters>? {
         return emittersCodec[id]
     }
 
     @JvmStatic
     fun register(
         id: String,
-        codec: ForgeStreamCodec<PacketByteBuf, ParticleEmitters>
-    ): ForgeStreamCodec<PacketByteBuf, ParticleEmitters> {
+        codec: ForgeStreamCodec<FriendlyByteBuf, ParticleEmitters>
+    ): ForgeStreamCodec<FriendlyByteBuf, ParticleEmitters> {
         emittersCodec[id] = codec
         return codec
     }
@@ -292,7 +292,7 @@ object ParticleEmittersManager {
 
     private fun encodeEmittersToArray(emitters: ParticleEmitters): ByteArray {
         val codec = emitters.getCodec()
-        val buf = PacketByteBuf(
+        val buf = FriendlyByteBuf(
             Unpooled.buffer(),
         )
         return try {

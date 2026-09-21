@@ -29,7 +29,7 @@ class TestShapeUtilStyle(uuid: UUID = UUID.randomUUID()) :
         val res = HashMap<StyleData, RelativeLocation>()
 
         RGBImagePointBuilder(
-            ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, "test/magic_axe.png")
+            ResourceLocation(CooParticlesConstants.MOD_ID, "test/magic_axe.png")
         ).step(0.08).scale(1.0).build().forEach {
             val rgba = it.value
             res[StyleData { it ->

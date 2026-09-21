@@ -213,7 +213,7 @@ class AdvancedShaderProgramBuilder {
      * @return 当前构建器或由其配置生成的结果
      */
     fun managedId(path: String): AdvancedShaderProgramBuilder {
-        managedProgramId = ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, path)
+        managedProgramId = ResourceLocation(CooParticlesConstants.MOD_ID, path)
         return this
     }
 
@@ -307,7 +307,7 @@ class AdvancedShaderProgramBuilder {
 
     private fun identifier(path: String, type: GlShaderType): GlShader {
         return IdentifierShader(
-            ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, path),
+            ResourceLocation(CooParticlesConstants.MOD_ID, path),
             type
         )
     }

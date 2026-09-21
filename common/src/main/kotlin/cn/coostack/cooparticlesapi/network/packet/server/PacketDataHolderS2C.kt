@@ -1,7 +1,7 @@
 package cn.coostack.cooparticlesapi.network.packet.server
 
 import cn.coostack.cooparticlesapi.CooParticlesConstants
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.resources.ResourceLocation
 
 class PacketDataHolderS2C(
@@ -17,8 +17,8 @@ class PacketDataHolderS2C(
     )
 
     companion object {
-        private val id = ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, "data_holder")
-        val payloadID = ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, "data_holder")
+        private val id = ResourceLocation(CooParticlesConstants.MOD_ID, "data_holder")
+        val payloadID = ResourceLocation(CooParticlesConstants.MOD_ID, "data_holder")
         val CODEC = ForgeStreamCodec.of({ buf, packet ->
             buf.writeInt(packet.entityId)
             buf.writeBoolean(packet.cacheAllToggle)
@@ -57,7 +57,7 @@ class PacketDataHolderS2C(
         private fun encodeValue(type: String, value: Any, entity: net.minecraft.world.entity.Entity): ByteArray {
             val codec = cn.coostack.cooparticlesapi.data.holder.DataHolderManager.getCodecFromID(type)
                 ?: throw IllegalStateException("DataHolder codec not registered for type: $type")
-            val buf = PacketByteBuf(io.netty.buffer.Unpooled.buffer())
+            val buf = FriendlyByteBuf(io.netty.buffer.Unpooled.buffer())
             @Suppress("UNCHECKED_CAST")
             (codec as CommonStreamCodec<Any>).encode(buf, value)
             val data = ByteArray(buf.readableBytes())
@@ -82,7 +82,7 @@ class PacketDataHolderS2C(
     private fun decodeValue(type: String, data: ByteArray, entity: net.minecraft.world.entity.Entity): Any {
         val codec = cn.coostack.cooparticlesapi.data.holder.DataHolderManager.getCodecFromID(type)
             ?: throw IllegalStateException("DataHolder codec not registered for type: $type")
-        val buf = PacketByteBuf(io.netty.buffer.Unpooled.wrappedBuffer(data))
+        val buf = FriendlyByteBuf(io.netty.buffer.Unpooled.wrappedBuffer(data))
         @Suppress("UNCHECKED_CAST")
         return (codec as CommonStreamCodec<Any>).decode(buf)
     }

@@ -40,7 +40,7 @@ class DemoWaterBallRenderEntity() : AutoRenderEntity(null, Vec3.ZERO), DemoWorld
     override fun getRenderID(): ResourceLocation = ID
 
     companion object {
-        val ID: ResourceLocation = ResourceLocation.fromNamespaceAndPath(
+        val ID: ResourceLocation = ResourceLocation(
             CooParticlesConstants.MOD_ID,
             "demo_water_ball_render_entity"
         )

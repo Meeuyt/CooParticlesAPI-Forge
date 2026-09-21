@@ -1,7 +1,7 @@
 package cn.coostack.cooparticlesapi.network.packet.server
 
 import cn.coostack.cooparticlesapi.CooParticlesConstants
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.sounds.SoundSource
 import net.minecraft.world.phys.Vec3
@@ -18,8 +18,8 @@ class PacketSoundLoopS2C(
     val stopImmediately: Boolean
 ) {
     companion object {
-        private val identifierID = ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, "sound_loop")
-        val payloadID = ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, "sound_loop")
+        private val identifierID = ResourceLocation(CooParticlesConstants.MOD_ID, "sound_loop")
+        val payloadID = ResourceLocation(CooParticlesConstants.MOD_ID, "sound_loop")
 
         val CODEC = ForgeStreamCodec.of(
             { packet, buf ->

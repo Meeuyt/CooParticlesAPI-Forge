@@ -213,9 +213,9 @@ internal object OpenGlPostEffectExecutionBackend : PostEffectExecutionBackend,
     PostEffectResourceBackend,
     PostEffectAttachmentPreparationBackend {
     private val screenVertexId: ResourceLocation =
-        ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, "pipeline/vertexes/screen.vsh")
+        ResourceLocation(CooParticlesConstants.MOD_ID, "pipeline/vertexes/screen.vsh")
     private val bindingMaskFragmentId: ResourceLocation =
-        ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, "post/binding_mask.fsh")
+        ResourceLocation(CooParticlesConstants.MOD_ID, "post/binding_mask.fsh")
 
     private val programs = LinkedHashMap<PostProgramKey, CooShaderProgram>()
     private val customTextures = LinkedHashMap<ResourceLocation, IdentifierTexture>()
@@ -2756,7 +2756,7 @@ internal object OpenGlPostEffectExecutionBackend : PostEffectExecutionBackend,
     private fun managedProgramId(key: PostProgramKey): ResourceLocation {
         val vertexPath = key.vertex.path.replace('.', '_').replace('/', '_')
         val fragmentPath = key.fragment.path.replace('.', '_').replace('/', '_')
-        return ResourceLocation.fromNamespaceAndPath(
+        return ResourceLocation(
             CooParticlesConstants.MOD_ID,
             "post/runtime/${key.vertex.namespace}_${vertexPath}/${key.fragment.namespace}_$fragmentPath"
         )

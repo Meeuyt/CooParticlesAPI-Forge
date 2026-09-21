@@ -10,7 +10,7 @@ abstract class AutoTransformableCParticleEmitter(pos: Vec3, world: Level?) :
     TransformableCParticleEmitter(pos, world) {
     final override fun getEmittersID(): String = this::class.java.name
 
-    final override fun getCodec(): ForgeStreamCodec<PacketByteBuf, ParticleEmitters> {
+    final override fun getCodec(): ForgeStreamCodec<FriendlyByteBuf, ParticleEmitters> {
         return ParticleEmittersRegistryHelper.generateCodec(this)
     }
 }

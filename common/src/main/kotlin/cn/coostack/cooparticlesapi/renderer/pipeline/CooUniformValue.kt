@@ -1,6 +1,6 @@
 package cn.coostack.cooparticlesapi.renderer.pipeline
 
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 import org.joml.Matrix2dc
 import org.joml.Matrix2fc
 import org.joml.Matrix3dc
@@ -34,7 +34,7 @@ sealed interface CooUniformValue {
 
         val STREAM_CODEC: ForgeStreamCodec<CooUniformValue> = ForgeStreamCodec.of(::encode, ::decode)
 
-        private fun encode(buffer: PacketByteBuf, value: CooUniformValue) {
+        private fun encode(buffer: FriendlyByteBuf, value: CooUniformValue) {
             when (value) {
                 is FloatValue -> {
                     buffer.writeByte(FLOAT)
@@ -120,7 +120,7 @@ sealed interface CooUniformValue {
             }
         }
 
-        private fun decode(buffer: PacketByteBuf): CooUniformValue {
+        private fun decode(buffer: FriendlyByteBuf): CooUniformValue {
             return when (val type = buffer.readUnsignedByte().toInt()) {
                 FLOAT -> FloatValue(buffer.readFloat())
                 INT -> IntValue(unZigZag(buffer.readVarInt()))
@@ -154,16 +154,16 @@ sealed interface CooUniformValue {
             }
         }
 
-        private fun writeMatrixShape(buffer: PacketByteBuf, columns: Int, rows: Int) {
+        private fun writeMatrixShape(buffer: FriendlyByteBuf, columns: Int, rows: Int) {
             buffer.writeByte(columns)
             buffer.writeByte(rows)
         }
 
-        private fun readMatrixShape(buffer: PacketByteBuf): Pair<Int, Int> {
+        private fun readMatrixShape(buffer: FriendlyByteBuf): Pair<Int, Int> {
             return buffer.readUnsignedByte().toInt() to buffer.readUnsignedByte().toInt()
         }
 
-        private fun <T> readList(buffer: PacketByteBuf, readElement: PacketByteBuf.() -> T): List<T> {
+        private fun <T> readList(buffer: FriendlyByteBuf, readElement: FriendlyByteBuf.() -> T): List<T> {
             return List(buffer.readUnsignedByte().toInt()) { buffer.readElement() }
         }
 

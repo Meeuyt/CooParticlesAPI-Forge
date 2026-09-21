@@ -3,7 +3,7 @@ package cn.coostack.cooparticlesapi.cparticle
 import cn.coostack.cooparticlesapi.network.particle.emitters.command.curve.FloatCurve
 import cn.coostack.cooparticlesapi.network.particle.emitters.command.curve.BezierFloatKeyframe
 import cn.coostack.cooparticlesapi.network.particle.emitters.command.curve.BezierKeyframeFloatCurve
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 
 class CParticleCurve private constructor(
     packed: FloatArray,

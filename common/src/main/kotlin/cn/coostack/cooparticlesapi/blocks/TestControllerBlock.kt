@@ -6,7 +6,7 @@ import net.minecraft.core.BlockPos
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResult
-import net.minecraft.world.ItemInteractionResult
+import net.minecraft.world.InteractionResult
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.level.BlockGetter
@@ -70,14 +70,14 @@ class TestControllerBlock(properties: Properties) : BaseEntityBlock(properties) 
         player: Player,
         hand: InteractionHand,
         hitResult: BlockHitResult
-    ): ItemInteractionResult {
+    ): InteractionResult {
         if (stack.item is TestBlockBinderItem) {
-            return ItemInteractionResult.SKIP_DEFAULT_BLOCK_INTERACTION
+            return InteractionResult.SUCCESS
         }
         return when (openIfCreative(level, pos, player)) {
-            InteractionResult.SUCCESS, InteractionResult.CONSUME -> ItemInteractionResult.SUCCESS
-            InteractionResult.FAIL -> ItemInteractionResult.FAIL
-            else -> ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION
+            InteractionResult.SUCCESS, InteractionResult.CONSUME -> InteractionResult.SUCCESS
+            InteractionResult.FAIL -> InteractionResult.FAIL
+            else -> InteractionResult.PASS
         }
     }
 

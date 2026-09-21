@@ -15,7 +15,7 @@ import net.minecraft.resources.ResourceLocation
 class PacketPerformanceStatusRequestC2S : CooPacket() {
     /** 返回该业务包的稳定协议 ID。 */
     override fun id(): ResourceLocation {
-        return ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, PACKET_ID)
+        return ResourceLocation(CooParticlesConstants.MOD_ID, PACKET_ID)
     }
 
     /** 验证请求类型、命令权限和服务端限流后构造固定大小快照。 */

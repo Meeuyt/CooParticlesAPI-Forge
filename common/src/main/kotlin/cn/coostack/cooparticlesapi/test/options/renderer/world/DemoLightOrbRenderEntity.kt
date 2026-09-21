@@ -40,7 +40,7 @@ class DemoLightOrbRenderEntity() : AutoRenderEntity(null, Vec3.ZERO), DemoWorldR
     override fun getRenderID(): ResourceLocation = ID
 
     companion object {
-        val ID: ResourceLocation = ResourceLocation.fromNamespaceAndPath(
+        val ID: ResourceLocation = ResourceLocation(
             CooParticlesConstants.MOD_ID,
             "demo_light_orb_render_entity"
         )

@@ -16,7 +16,7 @@ class NestedBuffersControlerBuffer : ParticleControlerDataBuffer<Map<String, Par
     companion object {
         @JvmStatic
         val id = ParticleControlerDataBuffer.Id(
-            ResourceLocation.fromNamespaceAndPath(
+            ResourceLocation(
                 CooParticlesConstants.MOD_ID, "nested"
             )
         )
@@ -56,7 +56,7 @@ class NestedBuffersControlerBuffer : ParticleControlerDataBuffer<Map<String, Par
             val key = String(buf.readBytes(keyLen).copy().array())
             val typeLen = buf.readInt()
             val idSplit = String(buf.readBytes(typeLen).copy().array()).split(":")
-            val id = ResourceLocation.fromNamespaceAndPath(idSplit[0], idSplit[1])
+            val id = ResourceLocation(idSplit[0], idSplit[1])
             val valueLen = buf.readInt()
             val valueBytes = buf.readBytes(valueLen).copy().array()
             val buffer = ParticleControlerDataBuffers.withIdDecode(id, valueBytes)!!

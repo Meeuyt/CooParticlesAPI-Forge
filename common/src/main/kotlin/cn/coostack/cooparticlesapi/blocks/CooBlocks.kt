@@ -26,7 +26,7 @@ object CooBlocks {
     }
 
     private fun <T : Block> register(id: String, supplier: () -> T): CommonDeferredRegistry<Block> {
-        val location = ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, id)
+        val location = ResourceLocation(CooParticlesConstants.MOD_ID, id)
         return CooParticlesServices.COO_REGISTRY.register(
             CommonDeferredRegistry(BuiltInRegistries.BLOCK, location) { supplier() }
         )

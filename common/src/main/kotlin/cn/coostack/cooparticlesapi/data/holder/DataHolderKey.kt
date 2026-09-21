@@ -8,7 +8,7 @@ data class DataHolderKey<T>(val targetType: Class<T>, val id: ResourceLocation) 
         inline fun <reified T> ofCooParticle(id: String): DataHolderKey<T> {
             return DataHolderKey(
                 T::class.java,
-                ResourceLocation.fromNamespaceAndPath(
+                ResourceLocation(
                     CooParticlesConstants.MOD_ID, id
                 )
             )

@@ -2,18 +2,18 @@ package cn.coostack.cooparticlesapi;
 
 import cn.coostack.cooparticlesapi.annotations.codec.CodecHelper;
 import cn.coostack.cooparticlesapi.annotations.codec.ForgeStreamCodec;
-import net.minecraft.network.PacketByteBuf;
+import net.minecraft.network.FriendlyByteBuf;
 
 public class CodecHelperJava {
     static {
         CodecHelper.register(
-                Boolean.class, ForgeStreamCodec.of(PacketByteBuf::writeBoolean, PacketByteBuf::readBoolean)
+                Boolean.class, ForgeStreamCodec.of(FriendlyByteBuf::writeBoolean, FriendlyByteBuf::readBoolean)
         );
         CodecHelper.register(
-                Integer.class, ForgeStreamCodec.of(PacketByteBuf::writeInt, PacketByteBuf::readInt)
+                Integer.class, ForgeStreamCodec.of(FriendlyByteBuf::writeInt, FriendlyByteBuf::readInt)
         );
         CodecHelper.register(
-                Long.class, ForgeStreamCodec.of(PacketByteBuf::writeLong, PacketByteBuf::readLong)
+                Long.class, ForgeStreamCodec.of(FriendlyByteBuf::writeLong, FriendlyByteBuf::readLong)
         );
     }
 

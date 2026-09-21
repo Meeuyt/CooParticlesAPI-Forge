@@ -1,9 +1,9 @@
 package cn.coostack.cooparticlesapi.renderer.runtime
 
 import cn.coostack.cooparticlesapi.renderer.RenderEntity
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 
 data class ClientRenderEntityType(
-    val codec: ForgeStreamCodec<PacketByteBuf, RenderEntity>,
+    val codec: ForgeStreamCodec<FriendlyByteBuf, RenderEntity>,
     val rendererFactory: (() -> RenderEntityRenderer<out RenderEntity>)? = null
 )

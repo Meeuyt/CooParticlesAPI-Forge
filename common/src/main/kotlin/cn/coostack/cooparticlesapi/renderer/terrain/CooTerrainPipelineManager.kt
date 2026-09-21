@@ -1266,7 +1266,7 @@ internal object CooTerrainPipelineManager {
                 return shaderFragmentSources[shaderId]
             }
         }
-        val location = ResourceLocation.fromNamespaceAndPath(
+        val location = ResourceLocation(
             shaderId.namespace,
             "shaders/core/${shaderId.path}.fsh"
         )
@@ -1299,7 +1299,7 @@ internal object CooTerrainPipelineManager {
         }
         val namespace = relative.substring(0, separator)
         val shaderPath = relative.substring(separator + 1)
-        val mapped = ResourceLocation.fromNamespaceAndPath(namespace, "$prefix$shaderPath")
+        val mapped = ResourceLocation(namespace, "$prefix$shaderPath")
         val source = resources.getResource(mapped).orElse(null) ?: return Optional.empty()
         val processed = CooShaderSourceLoader.load(resources, mapped).toByteArray(Charsets.UTF_8)
         return Optional.of(Resource(source.source(), IoSupplier { processed.inputStream() }))

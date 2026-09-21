@@ -247,12 +247,7 @@ object IrisCompat {
         }
         if (particleShader == null) return
 
-        particleShader.setDefaultUniforms(
-            VertexFormat.Mode.TRIANGLES,
-            view,
-            projection,
-            Minecraft.getInstance().window,
-        )
+        // setDefaultUniforms removed for 1.20.1 compatibility
         particleShader.apply()
         try {
             draw()
@@ -287,12 +282,7 @@ object IrisCompat {
         val stateShard = entityRenderStateShard
         stateShard?.setupRenderState()
         try {
-            entityShader.setDefaultUniforms(
-                VertexFormat.Mode.TRIANGLES,
-                view,
-                projection,
-                Minecraft.getInstance().window,
-            )
+            // setDefaultUniforms removed for 1.20.1 compatibility
             entityShader.apply()
             try {
                 draw()

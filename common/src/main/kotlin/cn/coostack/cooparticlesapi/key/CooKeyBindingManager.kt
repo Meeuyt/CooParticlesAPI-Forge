@@ -20,7 +20,7 @@ import org.lwjgl.glfw.GLFW
  *
  * 简单示例:
  * ```
- * val keyId = ResourceLocation.fromNamespaceAndPath(CooParticlesConstants.MOD_ID, "test_action")
+ * val keyId = ResourceLocation(CooParticlesConstants.MOD_ID, "test_action")
  * KeyBindingManager.register(
  *     keyId,
  *     InputConstants.Type.KEYSYM,
