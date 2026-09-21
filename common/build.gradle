@@ -80,6 +80,7 @@ sourceSets {
             exclude 'cn/coostack/cooparticlesapi/items/**'
             exclude 'cn/coostack/cooparticlesapi/network/packet/**'
             exclude 'cn/coostack/cooparticlesapi/network/buffer/**'
+            exclude 'cn/coostack/cooparticlesapi/cparticle/**'
             exclude 'cn/coostack/cooparticlesapi/display/**'
             exclude 'cn/coostack/cooparticlesapi/emitters/**'
             exclude 'cn/coostack/cooparticlesapi/coofx/**'
