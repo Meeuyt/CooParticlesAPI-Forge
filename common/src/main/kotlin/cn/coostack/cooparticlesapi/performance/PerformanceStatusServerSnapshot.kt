@@ -85,7 +85,7 @@ object PerformanceStatusServerSnapshotFactory {
         val sortedTickTimes = tickTimes.sortedArray()
         val p95Mspt = percentileNanos(sortedTickTimes, 0.95) / 1_000_000.0
         val maxMspt = (sortedTickTimes.lastOrNull() ?: 0L) / 1_000_000.0
-        val targetTps = server.tickRateManager().tickrate().toDouble()
+        val targetTps = server.tickRateManager.tickrate().toDouble()
         val sustainableTps = if (averageMspt > 0.0) 1_000.0 / averageMspt else targetTps
         val runtime = Runtime.getRuntime()
         val gc = PerformanceStatusJvmMetrics.snapshot()

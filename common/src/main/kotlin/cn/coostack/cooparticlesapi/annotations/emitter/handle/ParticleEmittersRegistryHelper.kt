@@ -26,13 +26,13 @@ object ParticleEmittersRegistryHelper {
         ForgeCodecHelper.updateFields(current, other)
     }
 
-    fun generateCodec(randomInstance: ClassParticleEmitters): CommonStreamCodec<ParticleEmitters> {
+    fun generateCodec(randomInstance: ClassParticleEmitters): ForgeStreamCodec<PacketByteBuf, ParticleEmitters> {
         return generateClassParticleCodec(randomInstance::class.java)
     }
 
-    fun generateClassParticleCodec(type: Class<out ClassParticleEmitters>): CommonStreamCodec<ParticleEmitters> {
+    fun generateClassParticleCodec(type: Class<out ClassParticleEmitters>): ForgeStreamCodec<PacketByteBuf, ParticleEmitters> {
         val constructor = type.getConstructor(Vec3::class.java, Level::class.java)
-        return CommonStreamCodec.of(
+        return ForgeStreamCodec.of(
             { buf, emitter ->
                 emitter as ClassParticleEmitters
                 ClassParticleEmitters.encodeBase(emitter, buf)
@@ -47,15 +47,15 @@ object ParticleEmittersRegistryHelper {
         )
     }
 
-    fun generateCodec(randomInstance: TransformableCParticleEmitter): CommonStreamCodec<ParticleEmitters> {
+    fun generateCodec(randomInstance: TransformableCParticleEmitter): ForgeStreamCodec<PacketByteBuf, ParticleEmitters> {
         return generateTransformableCParticleEmitterCodec(randomInstance::class.java)
     }
 
     fun generateTransformableCParticleEmitterCodec(
         type: Class<out TransformableCParticleEmitter>,
-    ): CommonStreamCodec<ParticleEmitters> {
+    ): ForgeStreamCodec<PacketByteBuf, ParticleEmitters> {
         val constructor = type.getConstructor(Vec3::class.java, Level::class.java)
-        return CommonStreamCodec.of(
+        return ForgeStreamCodec.of(
             { buf, emitter ->
                 emitter as TransformableCParticleEmitter
                 TransformableCParticleEmitter.encodeBase(emitter, buf)
@@ -70,13 +70,13 @@ object ParticleEmittersRegistryHelper {
         )
     }
 
-    fun generateCodec(randomInstance: ClassEmitters): CommonStreamCodec<ParticleEmitters> {
+    fun generateCodec(randomInstance: ClassEmitters): ForgeStreamCodec<PacketByteBuf, ParticleEmitters> {
         return generateClassEmittersCodec(randomInstance::class.java)
     }
 
-    fun generateClassEmittersCodec(type: Class<out ClassEmitters>): CommonStreamCodec<ParticleEmitters> {
+    fun generateClassEmittersCodec(type: Class<out ClassEmitters>): ForgeStreamCodec<PacketByteBuf, ParticleEmitters> {
         val constructor = type.getConstructor(Vec3::class.java, Level::class.java)
-        return CommonStreamCodec.of(
+        return ForgeStreamCodec.of(
             { buf, emitter ->
                 emitter as ClassEmitters
                 ClassEmitters.encodeBase(emitter, buf)

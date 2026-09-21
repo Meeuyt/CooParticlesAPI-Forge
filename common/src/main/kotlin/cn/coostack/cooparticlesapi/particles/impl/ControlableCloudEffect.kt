@@ -36,7 +36,7 @@ class ControlableCloudEffect(controlUUID: UUID, faceToPlayer: Boolean = true) : 
         }
 
         @JvmStatic
-        val packetCode: CommonStreamCodec< ControlableCloudEffect> = CommonCommonStreamCodec.of(
+        val packetCode: CommonStreamCodec< ControlableCloudEffect> = CommonStreamCodec.of(
             { buf, effect ->
                 buf.writeUUID(effect.controlUUID)
                 buf.writeBoolean(effect.faceToPlayer)

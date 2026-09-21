@@ -35,7 +35,7 @@ class ControlableEndRodEffect(controlUUID: UUID, faceToPlayer: Boolean = true) :
         }
 
         @JvmStatic
-        val packetCode: CommonStreamCodec< ControlableEndRodEffect> = CommonCommonStreamCodec.of(
+        val packetCode: CommonStreamCodec< ControlableEndRodEffect> = CommonStreamCodec.of(
             { buf, effect ->
                 buf.writeUUID(effect.controlUUID)
                 buf.writeBoolean(effect.faceToPlayer)

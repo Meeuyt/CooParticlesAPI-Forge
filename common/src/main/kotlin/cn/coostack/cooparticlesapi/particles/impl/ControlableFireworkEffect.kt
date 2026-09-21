@@ -34,7 +34,7 @@ class ControlableFireworkEffect(controlUUID: UUID, faceToPlayer: Boolean = true)
         }
 
         @JvmStatic
-        val packetCode: CommonStreamCodec< ControlableFireworkEffect> = CommonCommonStreamCodec.of(
+        val packetCode: CommonStreamCodec< ControlableFireworkEffect> = CommonStreamCodec.of(
             { buf, effect ->
                 buf.writeUUID(effect.controlUUID)
                 buf.writeBoolean(effect.faceToPlayer)

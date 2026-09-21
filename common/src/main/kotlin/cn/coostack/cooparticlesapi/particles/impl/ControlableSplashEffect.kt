@@ -36,7 +36,7 @@ class ControlableSplashEffect(controlUUID: UUID, faceToPlayer: Boolean = true) :
         }
 
         @JvmStatic
-        val packetCode: CommonStreamCodec< ControlableSplashEffect> = CommonCommonStreamCodec.of(
+        val packetCode: CommonStreamCodec< ControlableSplashEffect> = CommonStreamCodec.of(
             { buf, effect ->
                 buf.writeUUID(effect.controlUUID)
                 buf.writeBoolean(effect.faceToPlayer)

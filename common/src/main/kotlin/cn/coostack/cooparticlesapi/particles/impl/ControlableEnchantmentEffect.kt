@@ -34,7 +34,7 @@ class ControlableEnchantmentEffect(controlUUID: UUID, faceToPlayer: Boolean = tr
         }
 
         @JvmStatic
-        val packetCode: CommonStreamCodec< ControlableEnchantmentEffect> = CommonCommonStreamCodec.of(
+        val packetCode: CommonStreamCodec< ControlableEnchantmentEffect> = CommonStreamCodec.of(
             { buf, effect ->
                 buf.writeUUID(effect.controlUUID)
                 buf.writeBoolean(effect.faceToPlayer)

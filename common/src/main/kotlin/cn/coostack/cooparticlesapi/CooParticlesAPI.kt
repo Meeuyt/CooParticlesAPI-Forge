@@ -150,7 +150,7 @@ object CooParticlesAPI {
     }
 
     fun tickServer(server: MinecraftServer) {
-        val tickManager = server.tickRateManager()
+        val tickManager = server.tickRateManager
         if (!tickManager.runsNormally()) {
             return
         }

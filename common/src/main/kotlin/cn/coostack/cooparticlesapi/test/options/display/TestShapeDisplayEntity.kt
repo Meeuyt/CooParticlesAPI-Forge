@@ -13,8 +13,8 @@ import net.minecraft.client.Camera
 import net.minecraft.client.renderer.LightTexture
 import net.minecraft.client.renderer.MultiBufferSource
 import net.minecraft.client.renderer.texture.OverlayTexture
-import net.minecraft.network.RegistryFriendlyByteBuf
-import net.minecraft.network.codec.StreamCodec
+import cn.coostack.cooparticlesapi.annotations.codec.ForgeStreamCodec
+import net.minecraft.network.PacketByteBuf
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.level.Level
 import net.minecraft.world.phys.Vec3
@@ -174,7 +174,7 @@ class TestShapeDisplayEntity(pos: Vec3, world: Level?) : DisplayEntity(pos, worl
 //        direction = player.eyePosition - pos
     }
 
-    override fun getCodec(): StreamCodec<in RegistryFriendlyByteBuf, DisplayEntity> {
+    override fun getCodec(): ForgeStreamCodec<PacketByteBuf, DisplayEntity> {
         return DisplayEntityRegistryHelper.generateCodec(this)
     }
 

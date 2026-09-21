@@ -766,7 +766,7 @@ object CParticleSystemManager {
         if (!ready() || systems.isEmpty()) return
         val level = Minecraft.getInstance().level ?: return
         renderFrameId++
-        val partial = delta.getGameTimeDeltaPartialTick(!level.tickRateManager().runsNormally())
+        val partial = delta.getGameTimeDeltaPartialTick(!level.tickRateManager.runsNormally())
         CParticleRenderer.render(systems.values, view, proj, camera, partial)
     }
 

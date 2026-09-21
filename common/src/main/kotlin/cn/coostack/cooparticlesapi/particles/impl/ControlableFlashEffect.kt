@@ -34,7 +34,7 @@ class ControlableFlashEffect(controlUUID: UUID, faceToPlayer: Boolean = true) :
         }
 
         @JvmStatic
-        val packetCode: CommonStreamCodec< ControlableFlashEffect> = CommonCommonStreamCodec.of(
+        val packetCode: CommonStreamCodec< ControlableFlashEffect> = CommonStreamCodec.of(
             { buf, effect ->
                 buf.writeUUID(effect.controlUUID)
                 buf.writeBoolean(effect.faceToPlayer)

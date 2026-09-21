@@ -28,7 +28,7 @@ class TestTickItem : Item(Item.Properties().stacksTo(1)) {
 
     fun tickFrozen(world: ServerLevel, user: ServerPlayer) {
         val server = world.server!!
-        val tickManager = server.tickRateManager()
+        val tickManager = server.tickRateManager
         val frozen = tickManager.isFrozen
 
         if (frozen) {

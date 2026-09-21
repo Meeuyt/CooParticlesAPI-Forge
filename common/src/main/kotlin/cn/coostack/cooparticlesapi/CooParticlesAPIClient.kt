@@ -265,7 +265,7 @@ object CooParticlesAPIClient {
         }
         RenderPipelineExamples.ensureStarfieldFbo()
 
-        val tickManager = world.tickRateManager()
+        val tickManager = world.tickRateManager
         if (!tickManager.runsNormally()) {
             return
         }

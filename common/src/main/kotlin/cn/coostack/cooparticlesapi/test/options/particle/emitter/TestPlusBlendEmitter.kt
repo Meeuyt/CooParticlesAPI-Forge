@@ -12,8 +12,8 @@ import cn.coostack.cooparticlesapi.network.particle.emitters.ParticleEmitters
 import cn.coostack.cooparticlesapi.particles.control.ParticleControler
 import cn.coostack.cooparticlesapi.utils.RelativeLocation
 import cn.coostack.cooparticlesapi.utils.builder.PointsBuilder
-import net.minecraft.network.RegistryFriendlyByteBuf
-import net.minecraft.network.codec.StreamCodec
+import cn.coostack.cooparticlesapi.annotations.codec.ForgeStreamCodec
+import net.minecraft.network.PacketByteBuf
 import net.minecraft.world.level.Level
 import net.minecraft.world.phys.Vec3
 import kotlin.random.Random
@@ -84,7 +84,7 @@ class TestPlusBlendEmitter(pos: Vec3, world: Level?) : ClassParticleEmitters(pos
         return "test-additional-emitters"
     }
 
-    override fun getCodec(): StreamCodec<RegistryFriendlyByteBuf, ParticleEmitters> {
+    override fun getCodec(): ForgeStreamCodec<PacketByteBuf, ParticleEmitters> {
         return ParticleEmittersRegistryHelper.generateCodec(this)
     }
 

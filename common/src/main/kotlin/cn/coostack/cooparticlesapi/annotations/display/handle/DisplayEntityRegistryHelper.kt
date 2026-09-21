@@ -10,10 +10,10 @@ import net.minecraft.world.phys.Vec3
 
 object DisplayEntityRegistryHelper {
 
-    fun generateCodec(randomInstance: DisplayEntity): CommonStreamCodec<DisplayEntity> {
+    fun generateCodec(randomInstance: DisplayEntity): ForgeStreamCodec<PacketByteBuf, DisplayEntity> {
         val type = randomInstance::class.java
         val constructor = type.getConstructor(Vec3::class.java, Level::class.java)
-        return CommonStreamCodec.of(
+        return ForgeStreamCodec.of(
             { buf, display ->
                 display as DisplayEntity
                 DisplayEntity.encodeBase(display, buf)

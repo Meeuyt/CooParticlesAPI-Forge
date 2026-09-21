@@ -1,19 +1,19 @@
 package cn.coostack.cooparticlesapi;
 
 import cn.coostack.cooparticlesapi.annotations.codec.CodecHelper;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.codec.StreamCodec;
+import cn.coostack.cooparticlesapi.annotations.codec.ForgeStreamCodec;
+import net.minecraft.network.PacketByteBuf;
 
 public class CodecHelperJava {
     static {
         CodecHelper.register(
-                Boolean.class, StreamCodec.of(FriendlyByteBuf::writeBoolean, FriendlyByteBuf::readBoolean)
+                Boolean.class, ForgeStreamCodec.of(PacketByteBuf::writeBoolean, PacketByteBuf::readBoolean)
         );
         CodecHelper.register(
-                Integer.class, StreamCodec.of(FriendlyByteBuf::writeInt, FriendlyByteBuf::readInt)
+                Integer.class, ForgeStreamCodec.of(PacketByteBuf::writeInt, PacketByteBuf::readInt)
         );
         CodecHelper.register(
-                Long.class, StreamCodec.of(FriendlyByteBuf::writeLong, FriendlyByteBuf::readLong)
+                Long.class, ForgeStreamCodec.of(PacketByteBuf::writeLong, PacketByteBuf::readLong)
         );
     }
 
