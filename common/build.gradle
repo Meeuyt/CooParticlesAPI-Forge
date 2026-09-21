@@ -100,6 +100,18 @@ sourceSets {
             exclude 'cn/coostack/cooparticlesapi/annotations/emitter/**'
             exclude 'cn/coostack/cooparticlesapi/annotations/packet/**'
             exclude 'cn/coostack/cooparticlesapi/annotations/renderer/**'
+            exclude 'cn/coostack/cooparticlesapi/network/buffer/**'
+            exclude 'cn/coostack/cooparticlesapi/utils/helper/**'
+            exclude 'cn/coostack/cooparticlesapi/utils/builder/**'
+            exclude 'cn/coostack/cooparticlesapi/barrages/**'
+            exclude 'cn/coostack/cooparticlesapi/commands/**'
+            exclude 'cn/coostack/cooparticlesapi/event/**'
+            exclude 'cn/coostack/cooparticlesapi/extend/**'
+            exclude 'cn/coostack/cooparticlesapi/annotations/codec/CodecFieldAccessor.kt'
+            exclude 'cn/coostack/cooparticlesapi/utils/Math3DUtil.kt'
+            exclude 'cn/coostack/cooparticlesapi/utils/interpolator/particle/**'
+            exclude 'cn/coostack/cooparticlesapi/utils/interpolator/data/**'
+            exclude 'cn/coostack/cooparticlesapi/animation/**'
         }
     }
 }
