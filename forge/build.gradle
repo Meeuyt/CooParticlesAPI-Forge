@@ -23,7 +23,8 @@ tasks.named('processResources', ProcessResources) {
 }
 
 minecraft {
-    version '1.20.1'
+    version "1.20.1"
+    mappings "official", "1.20.1"
 }
 
 tasks.register("sourceWithCommon", Jar) {
