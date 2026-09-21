@@ -1,8 +1,20 @@
-plugins {
-    id 'java-library'
-    id 'org.jetbrains.kotlin.jvm'
-    id 'org.jetbrains.kotlin.kapt'
+buildscript {
+    repositories {
+        maven {
+            name = "Forge"
+            url = uri("https://maven.minecraftforge.net")
+        }
+        gradlePluginPortal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "net.minecraftforge.gradle:ForgeGradle:6.0.22"
+    }
 }
+
+apply plugin: 'java-library'
+apply plugin: 'org.jetbrains.kotlin.kapt'
+apply plugin: 'net.minecraftforge.gradle'
 
 java {
     toolchain {
@@ -10,12 +22,26 @@ java {
     }
 }
 
+minecraft {
+    version "1.20.1"
+    mappings channel: 'official', version: '1.20.1'
+}
+
+tasks.named('genIntellijRuns').configure {
+    enabled = false
+}
+tasks.named('genEclipseRuns').configure {
+    enabled = false
+}
+tasks.named('vscode').configure {
+    enabled = false
+}
+
 tasks.javadoc {
     enabled = false
 }
 
 dependencies {
-    implementation 'net.minecraftforge:forge:1.20.1-47.1.3'
     compileOnly group: 'org.spongepowered', name: 'mixin', version: '0.8.5'
     compileOnly "org.ow2.asm:asm:9.7"
     compileOnly "org.ow2.asm:asm-tree:9.7"
