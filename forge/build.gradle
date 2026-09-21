@@ -23,24 +23,7 @@ tasks.named('processResources', ProcessResources) {
 }
 
 minecraft {
-    version = '1.20.1'
-    mappings channel: 'parchment', version: '1.20.1-2024.07.07'
-    runs {
-        client {
-            workingDirectory project.file('run')
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-        }
-        server {
-            workingDirectory project.file('run')
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-        }
-        data {
-            workingDirectory project.file('run')
-            args '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
-        }
-    }
+    version '1.20.1'
 }
 
 tasks.register("sourceWithCommon", Jar) {
@@ -62,6 +45,10 @@ tasks.named('jar', Jar) {
 
 repositories {
     maven {
+        name = "Forge"
+        url = "https://maven.minecraftforge.net"
+    }
+    maven {
         name = "Kotlin for Forge"
         url = "https://thedarkcolour.github.io/KotlinForForge/"
     }
@@ -82,7 +69,6 @@ repositories {
 }
 
 dependencies {
-    minecraft "com.mojang:minecraft:1.20.1"
     compileOnly fileTree(dir: "../compile_only_depend", includes: ["*.jar"])
     compileOnly "maven.modrinth:sodium:mc1.20.1-0.5.8-forge"
     implementation "thedarkcolour:kotlinforforge-forge:5.10.0"
