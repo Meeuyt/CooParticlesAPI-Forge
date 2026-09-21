@@ -500,13 +500,11 @@ object CodecHelper {
         val elementCodec = codecOf(elementType) as CommonStreamCodec<Any>
 
         return CommonStreamCodec.of({ buf, value ->
-            { buf, value ->
                 buf.writeVarInt(value.size)
                 value.forEach { element ->
                     elementCodec.encode(buf, element ?: error("List字段不支持null元素: $type"))
                 }
-            },
-            { buf ->
+            }, { buf ->
                 val size = buf.readVarInt()
                 val list = ArrayList<Any?>(size)
                 repeat(size) {
@@ -527,13 +525,11 @@ object CodecHelper {
         val elementCodec = codecOf(elementType) as CommonStreamCodec<Any>
 
         return CommonStreamCodec.of({ buf, value ->
-            { buf, value ->
                 buf.writeVarInt(value.size)
                 value.forEach { element ->
                     elementCodec.encode(buf, element ?: error("Set字段不支持null元素: $type"))
                 }
-            },
-            { buf ->
+            }, { buf ->
                 val size = buf.readVarInt()
                 val set = LinkedHashSet<Any?>(size)
                 repeat(size) {
@@ -556,14 +552,12 @@ object CodecHelper {
         val valueCodec = codecOf(valueType) as CommonStreamCodec<Any>
 
         return CommonStreamCodec.of({ buf, value ->
-            { buf, value ->
                 buf.writeVarInt(value.size)
                 value.forEach { (key, mapValue) ->
                     keyCodec.encode(buf, key ?: error("Map字段不支持null键: $type"))
                     valueCodec.encode(buf, mapValue ?: error("Map字段不支持null值: $type"))
                 }
-            },
-            { buf ->
+            }, { buf ->
                 val size = buf.readVarInt()
                 val map = LinkedHashMap<Any?, Any?>(size)
                 repeat(size) {
@@ -588,13 +582,11 @@ object CodecHelper {
         val elementCodec = registryCodecOf(type.actualTypeArguments[0]) as
                 CommonStreamCodec<Any>
         return CommonStreamCodec.of({ buf, value ->
-            { buf, value ->
                 buf.writeVarInt(value.size)
                 value.forEach { element ->
                     elementCodec.encode(buf, element ?: error("List字段不支持null元素: $type"))
                 }
-            },
-            { buf ->
+            }, { buf ->
                 val size = buf.readVarInt()
                 List(size) { elementCodec.decode(buf) }
             },
@@ -615,13 +607,11 @@ object CodecHelper {
         val elementCodec = registryCodecOf(type.actualTypeArguments[0]) as
                 CommonStreamCodec<Any>
         return CommonStreamCodec.of({ buf, value ->
-            { buf, value ->
                 buf.writeVarInt(value.size)
                 value.forEach { element ->
                     elementCodec.encode(buf, element ?: error("Set字段不支持null元素: $type"))
                 }
-            },
-            { buf ->
+            }, { buf ->
                 val size = buf.readVarInt()
                 LinkedHashSet<Any>(size).apply {
                     repeat(size) { add(elementCodec.decode(buf)) }
@@ -646,14 +636,12 @@ object CodecHelper {
         val valueCodec = registryCodecOf(type.actualTypeArguments[1]) as
                 CommonStreamCodec<Any>
         return CommonStreamCodec.of({ buf, value ->
-            { buf, value ->
                 buf.writeVarInt(value.size)
                 value.forEach { (key, mapValue) ->
                     keyCodec.encode(buf, key ?: error("Map字段不支持null键: $type"))
                     valueCodec.encode(buf, mapValue ?: error("Map字段不支持null值: $type"))
                 }
-            },
-            { buf ->
+            }, { buf ->
                 val size = buf.readVarInt()
                 LinkedHashMap<Any, Any>(size).apply {
                     repeat(size) { put(keyCodec.decode(buf), valueCodec.decode(buf)) }
