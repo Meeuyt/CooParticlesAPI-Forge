@@ -32,6 +32,17 @@ tasks.named('jar', Jar) {
     archiveFileName.set("${rootProject.mod_name}-Common-${rootProject.minecraft_version}-${rootProject.version}.jar")
 }
 
+sourceSets {
+    main {
+        java {
+            exclude 'cn/coostack/cooparticlesapi/mixin/compat/sodium/**'
+        }
+        kotlin {
+            exclude 'cn/coostack/cooparticlesapi/renderer/terrain/sodium/**'
+        }
+    }
+}
+
 repositories {
     mavenCentral()
     maven {
