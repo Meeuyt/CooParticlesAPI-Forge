@@ -54,6 +54,12 @@ repositories {
         url = "https://thedarkcolour.github.io/KotlinForForge/"
     }
     maven {
+        url = uri("https://maven.modrinth.com")
+        content {
+            includeGroup("maven.modrinth")
+        }
+    }
+    maven {
         name = "jsdu-snapshot"
         url = "https://nexus.jsdu.cn/snapshots"
         mavenContent {

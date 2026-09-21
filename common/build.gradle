@@ -35,7 +35,7 @@ tasks.named('jar', Jar) {
 repositories {
     mavenCentral()
     maven {
-        url = uri("https://api.modrinth.com/maven")
+        url = uri("https://maven.modrinth.com")
         content {
             includeGroup("maven.modrinth")
         }
