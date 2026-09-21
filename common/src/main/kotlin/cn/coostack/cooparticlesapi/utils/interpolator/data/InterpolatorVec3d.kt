@@ -8,7 +8,7 @@ class InterpolatorVec3d(value: Vec3) : AbstractInterpolatorData<Vec3>(value) {
 
     companion object {
         @JvmStatic
-        val CODEC = ForgeStreamCodec.of(InterpolatorVec3d>(
+        val CODEC = ForgeStreamCodec.of(
             { buf, data ->
                 buf.writeVec3(data.value)
             }, {

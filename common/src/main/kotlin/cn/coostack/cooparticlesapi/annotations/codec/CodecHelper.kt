@@ -537,7 +537,7 @@ object CodecHelper {
                 val size = buf.readVarInt()
                 val set = LinkedHashSet<Any?>(size)
                 repeat(size) {
-                    set.add(elementCodecval id = buf.readVarInt(); BuiltInRegistries.BLOCK_STATE_REGISTRY.byId(id) ?: Blocks.AIR.defaultBlockState())
+                    set.add(elementCodec.decode(buf))
                 }
                 set
             }
@@ -567,7 +567,7 @@ object CodecHelper {
                 val size = buf.readVarInt()
                 val map = LinkedHashMap<Any?, Any?>(size)
                 repeat(size) {
-                    map[keyCodecval id = buf.readVarInt(); BuiltInRegistries.BLOCK_STATE_REGISTRY.byId(id) ?: Blocks.AIR.defaultBlockState()] = valueCodecval id = buf.readVarInt(); BuiltInRegistries.BLOCK_STATE_REGISTRY.byId(id) ?: Blocks.AIR.defaultBlockState()
+                    map[keyCodec.decode(buf)] = valueCodec.decode(buf)
                 }
                 map
             }
@@ -596,7 +596,7 @@ object CodecHelper {
             },
             { buf ->
                 val size = buf.readVarInt()
-                List(size) { elementCodecval id = buf.readVarInt(); BuiltInRegistries.BLOCK_STATE_REGISTRY.byId(id) ?: Blocks.AIR.defaultBlockState() }
+                List(size) { elementCodec.decode(buf) }
             },
         )
     }

@@ -9,7 +9,7 @@ class InterpolatorRelativeLocation(value: RelativeLocation) : AbstractInterpolat
 
     companion object {
         @JvmStatic
-        val CODEC = ForgeStreamCodec.of(InterpolatorRelativeLocation>(
+        val CODEC = ForgeStreamCodec.of(
             { buf, data ->
                 buf.writeDouble(data.value.x)
                 buf.writeDouble(data.value.y)
