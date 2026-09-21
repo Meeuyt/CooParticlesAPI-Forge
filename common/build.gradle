@@ -59,6 +59,7 @@ sourceSets {
     java {
         exclude 'cn/coostack/cooparticlesapi/mixin/**'
         exclude 'cn/coostack/cooparticlesapi/CodecHelperJava.java'
+        exclude 'cn/coostack/cooparticlesapi/renderer/terrain/CooTerrainRenderStateShard.java'
     }
         kotlin {
             exclude 'cn/coostack/cooparticlesapi/renderer/terrain/sodium/**'
