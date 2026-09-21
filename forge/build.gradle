@@ -8,7 +8,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath "net.minecraftforge.gradle:ForgeGradle:5.1.49"
+        classpath "net.minecraftforge.gradle:ForgeGradle:5.1.50"
     }
 }
 
@@ -24,7 +24,7 @@ tasks.named('processResources', ProcessResources) {
 
 minecraft {
     version "1.20.1"
-    mappings "official", "1.20.1"
+    mappings channel: 'official', version: '1.20.1'
 }
 
 tasks.register("sourceWithCommon", Jar) {
