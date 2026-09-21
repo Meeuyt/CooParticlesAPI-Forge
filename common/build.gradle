@@ -111,6 +111,7 @@ sourceSets {
             exclude 'cn/coostack/cooparticlesapi/utils/Math3DUtil.kt'
             exclude 'cn/coostack/cooparticlesapi/utils/interpolator/particle/**'
             exclude 'cn/coostack/cooparticlesapi/utils/interpolator/data/**'
+            exclude 'cn/coostack/cooparticlesapi/utils/presets/**'
             exclude 'cn/coostack/cooparticlesapi/animation/**'
         }
     }
