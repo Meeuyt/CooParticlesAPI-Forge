@@ -27,14 +27,10 @@ minecraft {
     mappings channel: 'official', version: '1.20.1'
 }
 
-tasks.named('genIntellijRuns').configure {
-    enabled = false
-}
-tasks.named('genEclipseRuns').configure {
-    enabled = false
-}
-tasks.named('vscode').configure {
-    enabled = false
+tasks.whenTaskAdded {
+    if (name == 'genIntellijRuns' || name == 'genEclipseRuns' || name == 'vscode') {
+        enabled = false
+    }
 }
 
 tasks.javadoc {
