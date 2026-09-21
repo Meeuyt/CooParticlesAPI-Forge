@@ -21,7 +21,6 @@ dependencies {
     compileOnly "org.ow2.asm:asm-tree:9.7"
     compileOnly group: 'io.github.llamalad7', name: 'mixinextras-common', version: '0.3.5'
     compileOnly "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2"
-    compileOnly "maven.modrinth:sodium:mc1.20.1-0.5.8-forge"
     annotationProcessor group: 'io.github.llamalad7', name: 'mixinextras-common', version: '0.3.5'
     compileOnly fileTree(dir: "../compile_only_depend", includes: ["*.jar"])
     implementation fileTree(dir: "../depend", includes: ["*.jar"])
