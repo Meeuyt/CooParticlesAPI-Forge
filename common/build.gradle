@@ -112,6 +112,8 @@ sourceSets {
             exclude 'cn/coostack/cooparticlesapi/utils/interpolator/particle/**'
             exclude 'cn/coostack/cooparticlesapi/utils/interpolator/data/**'
             exclude 'cn/coostack/cooparticlesapi/utils/presets/**'
+            exclude 'cn/coostack/cooparticlesapi/utils/RelativeLocation.kt'
+            exclude 'cn/coostack/cooparticlesapi/utils/interpolator/emitters/**'
             exclude 'cn/coostack/cooparticlesapi/animation/**'
         }
     }
