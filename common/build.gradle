@@ -1,24 +1,8 @@
-buildscript {
-    repositories {
-        maven {
-            name = "Forge"
-            url = uri("https://maven.minecraftforge.net")
-        }
-        gradlePluginPortal()
-        mavenCentral()
-    }
-    dependencies {
-        classpath "net.minecraftforge.gradle:ForgeGradle:5.1.50"
-    }
-}
-
 plugins {
     id 'java-library'
     id 'org.jetbrains.kotlin.jvm'
     id 'org.jetbrains.kotlin.kapt'
 }
-
-apply plugin: 'net.minecraftforge.gradle'
 
 java {
     toolchain {
@@ -30,13 +14,8 @@ tasks.javadoc {
     enabled = false
 }
 
-minecraft {
-    version '1.20.1'
-    mappings channel: 'parchment', version: '1.20.1-2024.07.07'
-}
-
 dependencies {
-    minecraft "com.mojang:minecraft:1.20.1"
+    implementation 'net.minecraftforge:forge:1.20.1-46.0.14'
     compileOnly group: 'org.spongepowered', name: 'mixin', version: '0.8.5'
     compileOnly "org.ow2.asm:asm:9.7"
     compileOnly "org.ow2.asm:asm-tree:9.7"
