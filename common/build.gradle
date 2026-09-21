@@ -69,6 +69,17 @@ sourceSets {
         exclude 'cn/coostack/cooparticlesapi/mixin/events/entity/EntityMixin.java'
         exclude 'cn/coostack/cooparticlesapi/mixin/events/entity/player/ServerPlayerGameModeMixin.java'
         exclude 'cn/coostack/cooparticlesapi/mixin/events/entity/player/PlayerListMixin.java'
+        exclude 'cn/coostack/cooparticlesapi/mixin/events/world/client/LevelRendererMixin.java'
+        exclude 'cn/coostack/cooparticlesapi/mixin/plugin/CooParticleMixinLoaderPlugin.java'
+        exclude 'cn/coostack/cooparticlesapi/mixin/compat/iris/FinalPassRendererAccessor.java'
+        exclude 'cn/coostack/cooparticlesapi/mixin/compat/iris/IrisRenderingPipelineMixin.java'
+        exclude 'cn/coostack/cooparticlesapi/mixin/ParticleEngineMixin.java'
+        exclude 'cn/coostack/cooparticlesapi/mixin/CooParticleCameraMixin.java'
+        exclude 'cn/coostack/cooparticlesapi/mixin/GameRendererCooFxCameraMixin.java'
+        exclude 'cn/coostack/cooparticlesapi/mixin/GameRendererTerrainFinishMixin.java'
+        exclude 'cn/coostack/cooparticlesapi/mixin/SectionBufferBuilderPackMixin.java'
+        exclude 'cn/coostack/cooparticlesapi/mixin/SectionRenderDispatcherRenderSectionMixin.java'
+        exclude 'cn/coostack/cooparticlesapi/mixin/DebugScreenOverlayMixin.java'
     }
         kotlin {
             exclude 'cn/coostack/cooparticlesapi/renderer/terrain/sodium/**'
