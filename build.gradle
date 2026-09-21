@@ -8,7 +8,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.24"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:2.1.0"
         classpath "net.minecraftforge.gradle:ForgeGradle:6.0.22"
     }
 }
@@ -32,6 +32,14 @@ subprojects {
         kotlinOptions {
             jvmTarget = '17'
             freeCompilerArgs += ['-Xjvm-default=all']
+        }
+    }
+
+    configurations.all {
+        resolutionStrategy {
+            force "org.jetbrains.kotlin:kotlin-stdlib:2.1.0"
+            force "org.jetbrains.kotlin:kotlin-stdlib-jdk8:2.1.0"
+            force "org.jetbrains.kotlin:kotlin-stdlib-jdk7:2.1.0"
         }
     }
 
