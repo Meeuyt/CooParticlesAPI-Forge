@@ -117,10 +117,15 @@ sourceSets {
             exclude 'cn/coostack/cooparticlesapi/utils/RelativeLocation.kt'
             exclude 'cn/coostack/cooparticlesapi/utils/RotationMatrix.kt'
             exclude 'cn/coostack/cooparticlesapi/utils/ImageUtil.kt'
+            exclude 'cn/coostack/cooparticlesapi/utils/BezierNode.kt'
+            exclude 'cn/coostack/cooparticlesapi/utils/ClientCameraUtil.kt'
+            exclude 'cn/coostack/cooparticlesapi/utils/FourierPhotoUtil.kt'
+            exclude 'cn/coostack/cooparticlesapi/utils/GraphMathHelper.kt'
             exclude 'cn/coostack/cooparticlesapi/utils/interpolator/**'
             exclude 'cn/coostack/cooparticlesapi/utils/Math3DUtil.kt'
             exclude 'cn/coostack/cooparticlesapi/utils/builder/**'
             exclude 'cn/coostack/cooparticlesapi/utils/helper/**'
+            exclude 'cn/coostack/cooparticlesapi/annotations/events/EventHandler.kt'
             exclude 'cn/coostack/cooparticlesapi/animation/**'
         }
     }
