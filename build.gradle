@@ -74,30 +74,4 @@ project(':forge') {
     dependencies {
         implementation project(':common')
     }
-    sourceSets.main.kotlin {
-        srcDir project(':common').sourceSets.main.kotlin.srcDirs
-        exclude(
-            'cn/coostack/cooparticlesapi/network/packet/client/listener/ClientDisplayEntityPacketHandler.kt',
-            'cn/coostack/cooparticlesapi/network/packet/client/listener/ClientParticleCompositionHandler.kt',
-            'cn/coostack/cooparticlesapi/network/packet/client/listener/ClientParticleEmittersPacketHandler.kt',
-            'cn/coostack/cooparticlesapi/network/packet/client/listener/ClientRenderEntityPacketHandler.kt',
-            'cn/coostack/cooparticlesapi/test/options/display/BarrageItemDisplayEntity.kt',
-            'cn/coostack/cooparticlesapi/test/options/display/TestBlockDisplayEntity.kt',
-            'cn/coostack/cooparticlesapi/test/options/display/TestShapeDisplayEntity.kt',
-            'cn/coostack/cooparticlesapi/test/options/particle/emitter/TestEventEmitter.kt',
-            'cn/coostack/cooparticlesapi/test/options/particle/emitter/TestPlusBlendEmitter.kt',
-            'cn/coostack/cooparticlesapi/utils/ReflectUtil.kt'
-        )
-    }
-    sourceSets.main.java {
-        srcDir project(':common').sourceSets.main.java.srcDirs
-        exclude 'cn/coostack/cooparticlesapi/CodecHelperJava.java'
-    }
-    compileKotlin {
-        source(project(':common').sourceSets.main.allSource)
-        inputs.file '../gradle.properties'
-    }
-    compileJava {
-        source(project(':common').sourceSets.main.allSource)
-    }
 }
