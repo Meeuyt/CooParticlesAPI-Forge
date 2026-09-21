@@ -54,7 +54,7 @@ repositories {
         url = "https://thedarkcolour.github.io/KotlinForForge/"
     }
     maven {
-        url = uri("https://maven.modrinth.com")
+        url = uri("https://api.modrinth.com/maven")
         content {
             includeGroup("maven.modrinth")
         }
