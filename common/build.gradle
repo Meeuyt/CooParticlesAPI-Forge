@@ -87,7 +87,6 @@ sourceSets {
             exclude 'cn/coostack/cooparticlesapi/test/**'
             exclude 'cn/coostack/cooparticlesapi/performance/**'
             exclude 'cn/coostack/cooparticlesapi/supports/**'
-            exclude 'cn/coostack/cooparticlesapi/api/**'
             exclude 'cn/coostack/cooparticlesapi/platform/**'
             exclude 'cn/coostack/cooparticlesapi/data/**'
             exclude 'cn/coostack/cooparticlesapi/listeners/**'
@@ -100,7 +99,6 @@ sourceSets {
             exclude 'cn/coostack/cooparticlesapi/annotations/renderer/**'
             exclude 'cn/coostack/cooparticlesapi/barrages/**'
             exclude 'cn/coostack/cooparticlesapi/commands/**'
-            exclude 'cn/coostack/cooparticlesapi/event/**'
             exclude 'cn/coostack/cooparticlesapi/animation/**'
         }
     }
