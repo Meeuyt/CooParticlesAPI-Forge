@@ -56,9 +56,20 @@ tasks.named('jar', Jar) {
 
 sourceSets {
     main {
-        java {
-            exclude 'cn/coostack/cooparticlesapi/mixin/compat/sodium/**'
-        }
+    java {
+        exclude 'cn/coostack/cooparticlesapi/mixin/compat/sodium/**'
+        exclude 'cn/coostack/cooparticlesapi/CodecHelperJava.java'
+        exclude 'cn/coostack/cooparticlesapi/mixin/TestControllerPickMouseMixin.java'
+        exclude 'cn/coostack/cooparticlesapi/mixin/TestControllerPickUseMixin.java'
+        exclude 'cn/coostack/cooparticlesapi/mixin/TestControllerPickKeyboardMixin.java'
+        exclude 'cn/coostack/cooparticlesapi/mixin/SectionCompilerMixin.java'
+        exclude 'cn/coostack/cooparticlesapi/mixin/MinecraftClientLifecycleMixin.java'
+        exclude 'cn/coostack/cooparticlesapi/mixin/CooFxCameraMouseMixin.java'
+        exclude 'cn/coostack/cooparticlesapi/mixin/PerformanceStatusVanillaPacketMixin.java'
+        exclude 'cn/coostack/cooparticlesapi/mixin/events/entity/EntityMixin.java'
+        exclude 'cn/coostack/cooparticlesapi/mixin/events/entity/player/ServerPlayerGameModeMixin.java'
+        exclude 'cn/coostack/cooparticlesapi/mixin/events/entity/player/PlayerListMixin.java'
+    }
         kotlin {
             exclude 'cn/coostack/cooparticlesapi/renderer/terrain/sodium/**'
             exclude 'cn/coostack/cooparticlesapi/CooParticlesAPI.kt'
