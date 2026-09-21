@@ -1,13 +1,13 @@
 package cn.coostack.cooparticlesapi.annotations.codec
 
-import net.minecraft.network.PacketByteBuf
+import net.minecraft.network.FriendlyByteBuf
 
-interface ForgeStreamCodec<T : PacketByteBuf, V> {
+interface ForgeStreamCodec<T : FriendlyByteBuf, V> {
     fun encode(buf: T, value: V)
     fun decode(buf: T): V
 
     companion object {
-        fun <T : PacketByteBuf, V> of(
+        fun <T : FriendlyByteBuf, V> of(
             encode: (T, V) -> Unit,
             decode: (T) -> V
         ): ForgeStreamCodec<T, V> {
