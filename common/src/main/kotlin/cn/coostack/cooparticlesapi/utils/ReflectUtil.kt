@@ -1,8 +1,7 @@
 package cn.coostack.cooparticlesapi.utils
 
 import cn.coostack.cooparticlesapi.CooParticlesConstants
-import cn.coostack.cooparticlesapi.network.particle.emitters.ClassParticleEmitters
-import net.minecraft.network.codec.StreamCodec
+import cn.coostack.cooparticlesapi.annotations.codec.ForgeStreamCodec
 import net.minecraft.world.level.Level
 import net.minecraft.world.phys.Vec3
 
@@ -14,7 +13,7 @@ object ReflectUtil {
     fun getLevelClass(): Class<Level> = Level::class.java
 
     @JvmStatic
-    fun getStreamCodecClass(): Class<StreamCodec<*, *>> = StreamCodec::class.java
+    fun getStreamCodecClass(): Class<ForgeStreamCodec<*>> = ForgeStreamCodec::class.java
 
 
     @JvmStatic
