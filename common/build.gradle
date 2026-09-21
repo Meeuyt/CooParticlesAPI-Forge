@@ -57,32 +57,8 @@ tasks.named('jar', Jar) {
 sourceSets {
     main {
     java {
-        exclude 'cn/coostack/cooparticlesapi/mixin/compat/sodium/**'
+        exclude 'cn/coostack/cooparticlesapi/mixin/**'
         exclude 'cn/coostack/cooparticlesapi/CodecHelperJava.java'
-        exclude 'cn/coostack/cooparticlesapi/mixin/TestControllerPickMouseMixin.java'
-        exclude 'cn/coostack/cooparticlesapi/mixin/TestControllerPickUseMixin.java'
-        exclude 'cn/coostack/cooparticlesapi/mixin/TestControllerPickKeyboardMixin.java'
-        exclude 'cn/coostack/cooparticlesapi/mixin/SectionCompilerMixin.java'
-        exclude 'cn/coostack/cooparticlesapi/mixin/MinecraftClientLifecycleMixin.java'
-        exclude 'cn/coostack/cooparticlesapi/mixin/CooFxCameraMouseMixin.java'
-        exclude 'cn/coostack/cooparticlesapi/mixin/PerformanceStatusVanillaPacketMixin.java'
-        exclude 'cn/coostack/cooparticlesapi/mixin/events/entity/EntityMixin.java'
-        exclude 'cn/coostack/cooparticlesapi/mixin/events/entity/player/ServerPlayerGameModeMixin.java'
-        exclude 'cn/coostack/cooparticlesapi/mixin/events/entity/player/PlayerListMixin.java'
-        exclude 'cn/coostack/cooparticlesapi/mixin/events/world/client/LevelRendererMixin.java'
-        exclude 'cn/coostack/cooparticlesapi/mixin/plugin/CooParticleMixinLoaderPlugin.java'
-        exclude 'cn/coostack/cooparticlesapi/mixin/compat/iris/FinalPassRendererAccessor.java'
-        exclude 'cn/coostack/cooparticlesapi/mixin/compat/iris/IrisRenderingPipelineMixin.java'
-        exclude 'cn/coostack/cooparticlesapi/mixin/ParticleEngineMixin.java'
-        exclude 'cn/coostack/cooparticlesapi/mixin/CooParticleCameraMixin.java'
-        exclude 'cn/coostack/cooparticlesapi/mixin/GameRendererCooFxCameraMixin.java'
-        exclude 'cn/coostack/cooparticlesapi/mixin/GameRendererTerrainFinishMixin.java'
-        exclude 'cn/coostack/cooparticlesapi/mixin/SectionBufferBuilderPackMixin.java'
-        exclude 'cn/coostack/cooparticlesapi/mixin/SectionRenderDispatcherRenderSectionMixin.java'
-        exclude 'cn/coostack/cooparticlesapi/mixin/LevelRendererMixin.java'
-        exclude 'cn/coostack/cooparticlesapi/mixin/SoundEngineMixin.java'
-        exclude 'cn/coostack/cooparticlesapi/mixin/MainTargetMixin.java'
-        exclude 'cn/coostack/cooparticlesapi/renderer/terrain/CooTerrainRenderStateShard.java'
     }
         kotlin {
             exclude 'cn/coostack/cooparticlesapi/renderer/terrain/sodium/**'
