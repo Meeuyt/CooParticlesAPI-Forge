@@ -21,7 +21,6 @@ class TestBlockBinderItem(properties: Properties) : Item(properties) {
 
     override fun appendHoverText(
         stack: ItemStack,
-        context: TooltipContext,
         tooltipComponents: MutableList<Component>,
         tooltipFlag: TooltipFlag
     ) {

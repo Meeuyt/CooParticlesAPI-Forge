@@ -28,7 +28,6 @@ class APIGroupTestingItem(settings: Properties) : Item(settings) {
 
     override fun appendHoverText(
         stack: ItemStack,
-        context: TooltipContext,
         tooltipComponents: MutableList<Component>,
         tooltipFlag: TooltipFlag
     ) {

@@ -10,7 +10,6 @@ import cn.coostack.cooparticlesapi.test.block.BlockTestPlaybackMode
 import cn.coostack.cooparticlesapi.test.block.BlockTestPlayer
 import cn.coostack.cooparticlesapi.test.api.TestOptionParamSpec
 import net.minecraft.core.BlockPos
-import net.minecraft.core.HolderLookup
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.network.protocol.Packet
 import net.minecraft.network.protocol.game.ClientGamePacketListener
@@ -342,8 +341,8 @@ class TestControllerBlockEntity(
         super.setRemoved()
     }
 
-    override fun loadAdditional(tag: CompoundTag, provider: HolderLookup.Provider) {
-        super.loadAdditional(tag, provider)
+    override fun load(tag: CompoundTag) {
+        super.load(tag)
         val savedGroupId = tag.getString("groupId")
         groupId = if (savedGroupId.isBlank()) {
             defaultTestControllerGroupId().toString()
@@ -394,8 +393,8 @@ class TestControllerBlockEntity(
         runLoop.restore(tag.getBoolean("shouldAutoRun"), tag.getInt("waitTicks"))
     }
 
-    override fun saveAdditional(tag: CompoundTag, provider: HolderLookup.Provider) {
-        super.saveAdditional(tag, provider)
+    override fun save(tag: CompoundTag): CompoundTag {
+        super.save(tag)
         tag.putString("groupId", groupId)
         tag.putString("mode", mode.id)
         tag.putInt("selectedIndex", selectedIndex)
@@ -425,8 +424,11 @@ class TestControllerBlockEntity(
         return ClientboundBlockEntityDataPacket.create(this)
     }
 
-    override fun getUpdateTag(provider: HolderLookup.Provider): CompoundTag {
-        return saveWithoutMetadata(provider).also(::writeAnimationRuntime)
+    override fun getUpdateTag(): CompoundTag {
+        val tag = CompoundTag()
+        save(tag)
+        writeAnimationRuntime(tag)
+        return tag
     }
 
     private fun buildRuntimeGroup(): BlockTestGroup? {

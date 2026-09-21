@@ -1,6 +1,8 @@
 package cn.coostack.cooparticlesapi.network.packet.server
 
 import cn.coostack.cooparticlesapi.CooParticlesConstants
+import cn.coostack.cooparticlesapi.annotations.CooAutoRegister
+import cn.coostack.cooparticlesapi.network.packet.api.CooPacket
 import cn.coostack.cooparticlesapi.renderer.pipeline.CooUniformValue
 import cn.coostack.cooparticlesapi.renderer.terrain.CooTerrainEffectComposition
 import cn.coostack.cooparticlesapi.renderer.terrain.CooTerrainEffectGroupSnapshot
@@ -9,7 +11,8 @@ import net.minecraft.core.BlockPos
 import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.resources.ResourceLocation
 
-class PacketTerrainEffectGroupS2C {
+@CooAutoRegister
+class PacketTerrainEffectGroupS2C : CooPacket {
     var operation: Int = REPLACE
     var dimension: ResourceLocation = ResourceLocation.withDefaultNamespace("overworld")
     var groupId: ResourceLocation = ResourceLocation(CooParticlesConstants.MOD_ID, "empty")
@@ -28,7 +31,8 @@ class PacketTerrainEffectGroupS2C {
         PACKET_ID
     )
 
-    override fun codec(): CommonStreamCodec<PacketTerrainEffectGroupS2C> = CODEC
+    override fun codec(): CommonStreamCodec<out CooPacket> =
+        CODEC as CommonStreamCodec<out CooPacket>
 
     override fun onClientReceive(context: cn.coostack.cooparticlesapi.network.packet.api.ClientContext) {
         context.client.execute {

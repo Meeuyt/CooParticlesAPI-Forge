@@ -1,11 +1,8 @@
 package cn.coostack.cooparticlesapi.blocks
 
 import cn.coostack.cooparticlesapi.items.TestBlockBinderItem
-import com.mojang.serialization.MapCodec
 import net.minecraft.core.BlockPos
 import net.minecraft.server.level.ServerPlayer
-import net.minecraft.world.InteractionHand
-import net.minecraft.world.InteractionResult
 import net.minecraft.world.InteractionResult
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.ItemStack
@@ -30,10 +27,6 @@ class TestControllerBlock(properties: Properties) : BaseEntityBlock(properties) 
         registerDefaultState(stateDefinition.any().setValue(HIDDEN, false))
     }
 
-    override fun codec(): MapCodec<out BaseEntityBlock> {
-        return CODEC
-    }
-
     override fun newBlockEntity(pos: BlockPos, state: BlockState): BlockEntity {
         return TestControllerBlockEntity(pos, state)
     }
@@ -50,35 +43,6 @@ class TestControllerBlock(properties: Properties) : BaseEntityBlock(properties) 
         return BlockEntityTicker<TestControllerBlockEntity> { _, _, _, blockEntity ->
             blockEntity.tickServer()
         } as BlockEntityTicker<T>
-    }
-
-    override fun useWithoutItem(
-        state: BlockState,
-        level: Level,
-        pos: BlockPos,
-        player: Player,
-        hitResult: BlockHitResult
-    ): InteractionResult {
-        return openIfCreative(level, pos, player)
-    }
-
-    override fun useItemOn(
-        stack: ItemStack,
-        state: BlockState,
-        level: Level,
-        pos: BlockPos,
-        player: Player,
-        hand: InteractionHand,
-        hitResult: BlockHitResult
-    ): InteractionResult {
-        if (stack.item is TestBlockBinderItem) {
-            return InteractionResult.SUCCESS
-        }
-        return when (openIfCreative(level, pos, player)) {
-            InteractionResult.SUCCESS, InteractionResult.CONSUME -> InteractionResult.SUCCESS
-            InteractionResult.FAIL -> InteractionResult.FAIL
-            else -> InteractionResult.PASS
-        }
     }
 
     override fun getRenderShape(state: BlockState): RenderShape {
@@ -120,6 +84,5 @@ class TestControllerBlock(properties: Properties) : BaseEntityBlock(properties) 
 
     companion object {
         val HIDDEN: BooleanProperty = BooleanProperty.create("hidden")
-        val CODEC: MapCodec<TestControllerBlock> = simpleCodec(::TestControllerBlock)
     }
 }

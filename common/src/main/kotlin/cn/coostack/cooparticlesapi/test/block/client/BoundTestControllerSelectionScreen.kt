@@ -24,9 +24,9 @@ class BoundTestControllerSelectionScreen(
         return super.mouseClicked(mouseX, mouseY, button)
     }
 
-    override fun mouseScrolled(mouseX: Double, mouseY: Double, scrollX: Double, scrollY: Double): Boolean {
+    override fun mouseScrolled(mouseX: Double, mouseY: Double, scrollY: Double): Boolean {
         if (!isInList(mouseX.toInt(), mouseY.toInt()) || maxScrollOffset() <= 0) {
-            return super.mouseScrolled(mouseX, mouseY, scrollX, scrollY)
+            return super.mouseScrolled(mouseX, mouseY, scrollY)
         }
         val delta = if (scrollY < 0.0) 1 else -1
         scrollOffset = (scrollOffset + delta).coerceIn(0, maxScrollOffset())

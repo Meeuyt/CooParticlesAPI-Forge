@@ -288,18 +288,13 @@ class PerformanceStatusScreen : Screen(Component.literal("CooParticles Status"))
     }
 
     /** 在指标表区域使用鼠标滚轮查看当前分段的全部行。 */
-    override fun mouseScrolled(
-        mouseX: Double,
-        mouseY: Double,
-        scrollX: Double,
-        scrollY: Double,
-    ): Boolean {
+    override fun mouseScrolled(mouseX: Double, mouseY: Double, scrollY: Double): Boolean {
         if (scrollY != 0.0 && mouseY >= visibleRowsTop && mouseY < visibleRowsBottom) {
             val step = if (scrollY > 0.0) -1 else 1
             rowOffset = (rowOffset + step).coerceIn(0, maxRowOffset)
             return true
         }
-        return super.mouseScrolled(mouseX, mouseY, scrollX, scrollY)
+        return super.mouseScrolled(mouseX, mouseY, scrollY)
     }
 
     /** 界面关闭时保存曲线选择，并仅结束实时查看。 */

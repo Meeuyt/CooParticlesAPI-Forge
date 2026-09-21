@@ -1,7 +1,5 @@
 package cn.coostack.cooparticlesapi.network.particle.composition
 
-import net.minecraft.network.FriendlyByteBuf
-import net.minecraft.world.phys.Vec3
 import java.util.UUID
 
 class ParticleShapeComposition(uuid: UUID) : ParticleComposition(Vec3.ZERO, null) {
@@ -12,8 +10,6 @@ class ParticleShapeComposition(uuid: UUID) : ParticleComposition(Vec3.ZERO, null
 
     private val points = ArrayList<Pair<PointsBuilder, (RelativeLocation) -> CompositionData>>()
     private val invokes = ArrayList<ParticleShapeComposition.() -> Unit>()
-    private val beforeInvokes =
-        ArrayList<ParticleShapeComposition.(map: Map<CompositionData, RelativeLocation>) -> Unit>()
 
     var scaleHelper: ScaleHelper? = null
         private set
@@ -47,11 +43,6 @@ class ParticleShapeComposition(uuid: UUID) : ParticleComposition(Vec3.ZERO, null
 
     fun applyDisplayAction(action: ParticleShapeComposition.() -> Unit): ParticleShapeComposition {
         invokes.add(action)
-        return this
-    }
-
-    fun applyBeforeDisplayAction(action: ParticleShapeComposition.(Map<CompositionData, RelativeLocation>) -> Unit): ParticleShapeComposition {
-        beforeInvokes.add(action)
         return this
     }
 
@@ -104,11 +95,6 @@ class ParticleShapeComposition(uuid: UUID) : ParticleComposition(Vec3.ZERO, null
             )
         }
         return res
-    }
-
-    override fun beforeDisplay(map: Map<CompositionData, RelativeLocation>) {
-        super.beforeDisplay(map)
-        beforeInvokes.forEach { it(map) }
     }
 
     override fun onDisplay() {

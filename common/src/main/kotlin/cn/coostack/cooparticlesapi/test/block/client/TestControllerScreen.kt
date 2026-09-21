@@ -594,7 +594,7 @@ class TestControllerScreen internal constructor(
      * 示例：参数页在缩放后仍能从鼠标所在的内容区域滚动。
      * 禁止缩放 [scrollY]，它表示滚轮步数而不是屏幕距离。
      */
-    override fun mouseScrolled(mouseX: Double, mouseY: Double, scrollX: Double, scrollY: Double): Boolean {
+    override fun mouseScrolled(mouseX: Double, mouseY: Double, scrollY: Double): Boolean {
         if (colorPickerRow >= 0) {
             return true
         }
@@ -616,7 +616,7 @@ class TestControllerScreen internal constructor(
             }
             return true
         }
-        return super.mouseScrolled(viewport.unscale(mouseX), viewport.unscale(mouseY), scrollX, scrollY)
+        return super.mouseScrolled(viewport.unscale(mouseX), viewport.unscale(mouseY), scrollY)
     }
 
     /**

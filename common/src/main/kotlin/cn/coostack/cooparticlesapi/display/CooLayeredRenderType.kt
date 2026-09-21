@@ -1,4 +1,4 @@
- package cn.coostack.cooparticlesapi.display
+package cn.coostack.cooparticlesapi.display
 
 import com.mojang.blaze3d.vertex.VertexConsumer
 import net.minecraft.client.renderer.MultiBufferSource
@@ -25,33 +25,27 @@ class LayeredVertexConsumer(
         require(delegates.isNotEmpty()) { "layered vertex consumer requires at least one delegate" }
     }
 
-    override fun addVertex(x: Float, y: Float, z: Float): VertexConsumer {
+    override fun addVertex(x: Float, y: Float, z: Float) {
         delegates.forEach { it.addVertex(x, y, z) }
-        return this
     }
 
-    override fun setColor(red: Int, green: Int, blue: Int, alpha: Int): VertexConsumer {
+    override fun setColor(red: Int, green: Int, blue: Int, alpha: Int) {
         delegates.forEach { it.setColor(red, green, blue, alpha) }
-        return this
     }
 
-    override fun setUv(u: Float, v: Float): VertexConsumer {
+    override fun setUv(u: Float, v: Float) {
         delegates.forEach { it.setUv(u, v) }
-        return this
     }
 
-    override fun setUv1(u: Int, v: Int): VertexConsumer {
+    override fun setUv1(u: Int, v: Int) {
         delegates.forEach { it.setUv1(u, v) }
-        return this
     }
 
-    override fun setUv2(u: Int, v: Int): VertexConsumer {
+    override fun setUv2(u: Int, v: Int) {
         delegates.forEach { it.setUv2(u, v) }
-        return this
     }
 
-    override fun setNormal(normalX: Float, normalY: Float, normalZ: Float): VertexConsumer {
+    override fun setNormal(normalX: Float, normalY: Float, normalZ: Float) {
         delegates.forEach { it.setNormal(normalX, normalY, normalZ) }
-        return this
     }
 }
