@@ -68,19 +68,19 @@ object CodecHelper {
 
     init {
         CodecHelperJava.init()
-        register(Short::class.java, CommonStreamCodec.of({ buf, i -> buf.writeShort(i.toInt()) }, { it.readShort() }))
-        register(Int::class.java, CommonStreamCodec.of({ buf, i -> buf.writeInt(i) }, { it.readInt() }))
-        register(Long::class.java, CommonStreamCodec.of({ buf, i -> buf.writeLong(i) }, { it.readLong() }))
-        register(LongArray::class.java, CommonStreamCodec.of({ buf, i -> buf.writeLongArray(i) }, { it.readLongArray() }))
-        register(Float::class.java, CommonStreamCodec.of({ buf, i -> buf.writeFloat(i) }, { it.readFloat() }))
-        register(Double::class.java, CommonStreamCodec.of({ buf, i -> buf.writeDouble(i) }, { it.readDouble() }))
-        register(String::class.java, CommonStreamCodec.of({ buf, i -> buf.writeUtf(i) }, { it.readUtf() }))
-        register(Byte::class.java, CommonStreamCodec.of({ buf, i -> buf.writeByte(i.toInt()) }, { it.readByte() }))
-        register(Boolean::class.java, CommonStreamCodec.of({ buf, i -> buf.writeBoolean(i) }, { it.readBoolean() }))
-        register(ByteArray::class.java, CommonStreamCodec.of({ buf, i -> buf.writeByteArray(i) }, { it.readByteArray() }))
+        register(Short::class.java, CommonStreamCodec.of<Short>({ buf: Any, i: Short -> (buf as net.minecraft.network.FriendlyByteBuf).writeShort(i.toInt()) }, { (it as net.minecraft.network.FriendlyByteBuf).readShort() }))
+        register(Int::class.java, CommonStreamCodec.of<Int>({ buf: Any, i: Int -> (buf as net.minecraft.network.FriendlyByteBuf).writeInt(i) }, { (it as net.minecraft.network.FriendlyByteBuf).readInt() }))
+        register(Long::class.java, CommonStreamCodec.of<Long>({ buf: Any, i: Long -> (buf as net.minecraft.network.FriendlyByteBuf).writeLong(i) }, { (it as net.minecraft.network.FriendlyByteBuf).readLong() }))
+        register(LongArray::class.java, CommonStreamCodec.of<LongArray>({ buf: Any, i: LongArray -> (buf as net.minecraft.network.FriendlyByteBuf).writeLongArray(i) }, { (it as net.minecraft.network.FriendlyByteBuf).readLongArray() }))
+        register(Float::class.java, CommonStreamCodec.of<Float>({ buf: Any, i: Float -> (buf as net.minecraft.network.FriendlyByteBuf).writeFloat(i) }, { (it as net.minecraft.network.FriendlyByteBuf).readFloat() }))
+        register(Double::class.java, CommonStreamCodec.of<Double>({ buf: Any, i: Double -> (buf as net.minecraft.network.FriendlyByteBuf).writeDouble(i) }, { (it as net.minecraft.network.FriendlyByteBuf).readDouble() }))
+        register(String::class.java, CommonStreamCodec.of<String>({ buf: Any, i: String -> (buf as net.minecraft.network.FriendlyByteBuf).writeUtf(i) }, { (it as net.minecraft.network.FriendlyByteBuf).readUtf() }))
+        register(Byte::class.java, CommonStreamCodec.of<Byte>({ buf: Any, i: Byte -> (buf as net.minecraft.network.FriendlyByteBuf).writeByte(i.toInt()) }, { (it as net.minecraft.network.FriendlyByteBuf).readByte() }))
+        register(Boolean::class.java, CommonStreamCodec.of<Boolean>({ buf: Any, i: Boolean -> (buf as net.minecraft.network.FriendlyByteBuf).writeBoolean(i) }, { (it as net.minecraft.network.FriendlyByteBuf).readBoolean() }))
+        register(ByteArray::class.java, CommonStreamCodec.of<ByteArray>({ buf: Any, i: ByteArray -> (buf as net.minecraft.network.FriendlyByteBuf).writeByteArray(i) }, { (it as net.minecraft.network.FriendlyByteBuf).readByteArray() }))
         register(CooUniformValue::class.java, CooUniformValue.STREAM_CODEC)
-        register(Char::class.java, CommonStreamCodec.of({ buf, i -> buf.writeChar(i.code) }, { it.readChar() }))
-        register(UUID::class.java, CommonStreamCodec.of({ buf, i -> buf.writeUUID(i) }, { it.readUUID() }))
+        register(Char::class.java, CommonStreamCodec.of<Char>({ buf: Any, i: Char -> (buf as net.minecraft.network.FriendlyByteBuf).writeChar(i.code) }, { (it as net.minecraft.network.FriendlyByteBuf).readChar() }))
+        register(UUID::class.java, CommonStreamCodec.of<UUID>({ buf: Any, i: java.util.UUID -> (buf as net.minecraft.network.FriendlyByteBuf).writeUUID(i) }, { (it as net.minecraft.network.FriendlyByteBuf).readUUID() }))
         registerRegistry(ControlableParticleData::class.java, ControlableParticleData.PACKET_CODEC)
         registerRegistry(ControlableCParticleData::class.java, ControlableCParticleData.PACKET_CODEC)
         registerRegistry(CParticleTextureSource::class.java, CParticleTextureSource.STREAM_CODEC)
@@ -101,8 +101,8 @@ object CodecHelper {
         )
         registerRegistry(CompositionEmittersData::class.java, CompositionEmittersData.PACKET_CODEC)
         registerRegistry(DisplayEntityEmittersData::class.java, DisplayEntityEmittersData.PACKET_CODEC)
-        register(Vector3f::class.java, CommonStreamCodec.of({ buf, i -> buf.writeVector3f(i) }, { it.readVector3f() }))
-        register(Vector4f::class.java, CommonStreamCodec.of({ buf, v ->
+        register(Vector3f::class.java, CommonStreamCodec.of<Vector3f>({ buf, i: Vector3f -> buf.writeVector3f(i) }, { it.readVector3f() }))
+        register(Vector4f::class.java, CommonStreamCodec.of<Vector4f>({ buf, v ->
             buf.writeFloat(v.x)
             buf.writeFloat(v.y)
             buf.writeFloat(v.z)
@@ -110,15 +110,15 @@ object CodecHelper {
         }, {
             Vector4f(it.readFloat(), it.readFloat(), it.readFloat(), it.readFloat())
         }))
-        register(Vec2::class.java, CommonStreamCodec.of({ buf, i ->
+        register(Vec2::class.java, CommonStreamCodec.of<Vec2>({ buf, i: Vec2 ->
             buf.writeFloat(i.x)
             buf.writeFloat(i.y)
         }, {
             Vec2(it.readFloat(), it.readFloat())
         }))
-        register(Vec3::class.java, CommonStreamCodec.of({ buf, i -> buf.writeVec3(i) }, { it.readVec3() }))
-        register(Quaternionf::class.java, CommonStreamCodec.of({ buf, q -> buf.writeQuaternion(q) }, { it.readQuaternion() }))
-        register(AABB::class.java, CommonStreamCodec.of({ buf, i ->
+        register(Vec3::class.java, CommonStreamCodec.of<Vec3>({ buf, i: Vec3 -> buf.writeVec3(i) }, { it.readVec3() }))
+        register(Quaternionf::class.java, CommonStreamCodec.of<Quaternionf>({ buf, q -> buf.writeQuaternion(q) }, { it.readQuaternion() }))
+        register(AABB::class.java, CommonStreamCodec.of<AABB>({ buf, i: AABB ->
             buf.writeDouble(i.minX)
             buf.writeDouble(i.minY)
             buf.writeDouble(i.minZ)
@@ -128,7 +128,7 @@ object CodecHelper {
         }, {
             AABB(it.readDouble(), it.readDouble(), it.readDouble(), it.readDouble(), it.readDouble(), it.readDouble())
         }))
-        register(HitBox::class.java, CommonStreamCodec.of({ buf, i ->
+        register(HitBox::class.java, CommonStreamCodec.of<HitBox>({ buf, i: HitBox ->
             buf.writeDouble(i.x1)
             buf.writeDouble(i.y1)
             buf.writeDouble(i.z1)
@@ -140,7 +140,7 @@ object CodecHelper {
         }))
         registerRegistry(ItemStack::class.java, ItemStack.OPTIONAL_STREAM_CODEC)
         register(SimpleRandomParticleData::class.java, SimpleRandomParticleData.PACKET_CODEC)
-        register(RelativeLocation::class.java, CommonStreamCodec.of({ buf, r ->
+        register(RelativeLocation::class.java, CommonStreamCodec.of<RelativeLocation>({ buf, r ->
             buf.apply {
                 writeDouble(r.x)
                 writeDouble(r.y)

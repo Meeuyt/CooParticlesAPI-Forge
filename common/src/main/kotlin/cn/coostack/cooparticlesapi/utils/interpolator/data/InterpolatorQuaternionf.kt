@@ -9,17 +9,18 @@ class InterpolatorQuaternionf(value: Quaternionf) : AbstractInterpolatorData<Qua
     companion object {
         @JvmStatic
         val CODEC = ForgeStreamCodec.of(
+            { buf ->
+                val x = buf.readFloat()
+                val y = buf.readFloat()
+                val z = buf.readFloat()
+                val w = buf.readFloat()
+                InterpolatorQuaternionf(Quaternionf(x, y, z, w))
+            },
             { buf, data ->
                 buf.writeFloat(data.value.x)
                 buf.writeFloat(data.value.y)
                 buf.writeFloat(data.value.z)
                 buf.writeFloat(data.value.w)
-            }, {
-                val x = it.readFloat()
-                val y = it.readFloat()
-                val z = it.readFloat()
-                val w = it.readFloat()
-                InterpolatorQuaternionf(Quaternionf(x, y, z, w))
             }
         )
     }

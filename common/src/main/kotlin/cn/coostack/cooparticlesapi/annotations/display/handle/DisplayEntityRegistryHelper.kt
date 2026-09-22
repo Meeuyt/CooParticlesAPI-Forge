@@ -3,6 +3,7 @@ package cn.coostack.cooparticlesapi.annotations.display.handle
 import cn.coostack.cooparticlesapi.annotations.codec.CodecFieldAccessor
 import cn.coostack.cooparticlesapi.annotations.codec.CommonStreamCodec
 import cn.coostack.cooparticlesapi.annotations.codec.ForgeCodecHelper
+import cn.coostack.cooparticlesapi.annotations.codec.ForgeStreamCodec
 import cn.coostack.cooparticlesapi.display.DisplayEntity
 import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.world.level.Level

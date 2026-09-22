@@ -8,11 +8,12 @@ class InterpolatorDouble(value: Double) : AbstractInterpolatorData<Double>(value
     companion object {
         @JvmStatic
         val CODEC = ForgeStreamCodec.of(
+            { buf ->
+                val current = buf.readDouble()
+                InterpolatorDouble(current)
+            },
             { buf, data ->
                 buf.writeDouble(data.value)
-            }, {
-                val current = it.readDouble()
-                InterpolatorDouble(current)
             }
         )
     }

@@ -8,11 +8,12 @@ class InterpolatorFloat(value: Float) : AbstractInterpolatorData<Float>(value) {
     companion object {
         @JvmStatic
         val CODEC = ForgeStreamCodec.of(
+            { buf ->
+                val current = buf.readFloat()
+                InterpolatorFloat(current)
+            },
             { buf, data ->
                 buf.writeFloat(data.value)
-            }, {
-                val current = it.readFloat()
-                InterpolatorFloat(current)
             }
         )
     }

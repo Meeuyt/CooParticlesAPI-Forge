@@ -9,15 +9,16 @@ class InterpolatorVector3f(value: Vector3f) : AbstractInterpolatorData<Vector3f>
     companion object {
         @JvmStatic
         val CODEC = ForgeStreamCodec.of(
+            { buf ->
+                val x = buf.readFloat()
+                val y = buf.readFloat()
+                val z = buf.readFloat()
+                InterpolatorVector3f(Vector3f(x, y, z))
+            },
             { buf, data ->
                 buf.writeFloat(data.value.x())
                 buf.writeFloat(data.value.y())
                 buf.writeFloat(data.value.z())
-            }, {
-                val x = it.readFloat()
-                val y = it.readFloat()
-                val z = it.readFloat()
-                InterpolatorVector3f(Vector3f(x, y, z))
             }
         )
     }
