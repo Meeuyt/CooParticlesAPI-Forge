@@ -39,7 +39,7 @@ subprojects {
         resolutionStrategy {
             eachDependency { DependencyResolveDetails details ->
                 if (details.requested.group == 'org.jetbrains.kotlin') {
-                    details.useVersion "2.1.0"
+                    details.useVersion "2.1.10"
                 }
             }
         }
