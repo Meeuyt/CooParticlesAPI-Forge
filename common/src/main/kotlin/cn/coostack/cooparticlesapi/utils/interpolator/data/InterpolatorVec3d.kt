@@ -1,5 +1,6 @@
 package cn.coostack.cooparticlesapi.utils.interpolator.data
 
+import cn.coostack.cooparticlesapi.annotations.codec.ForgeStreamCodec
 import cn.coostack.cooparticlesapi.utils.GraphMathHelper
 
 import net.minecraft.world.phys.Vec3
